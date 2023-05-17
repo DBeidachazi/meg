@@ -13,9 +13,13 @@ const rootElement = document.getElementById('root');
 
 const store = createStore(rootReducer);
 
+// ReactDOM.render(<Provider store={store}>
+//   <App />
+// </Provider>, div);
+
 ReactDOM.render(<Provider store={store}>
-  <App />
-</Provider>,
-rootElement);
+        <App/>
+    </Provider>,
+    rootElement);
 
 serviceWorker.unregister();

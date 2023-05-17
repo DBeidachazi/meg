@@ -166,7 +166,7 @@ class UiApp extends React.Component {
     const objProgressBar = (this.state.showProgressBar) ? objPrgBarVis : <p></p>;
 
     const jsxNavBarReact = 
-      <Container fluid="true" style={{ height:'100%', minHeight:'100%' }}  >
+      <Container fluid="true" style={{ height:'100%', minHeight:'100%', flexGrow: 1 }}  >
         <Navbar bg="light" variant="light" expand="lg" >
           <Navbar.Brand>
             <UiAbout />

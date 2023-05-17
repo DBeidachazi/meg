@@ -1,9 +1,9 @@
 {
   "name": "megviewer",
   "fullName": "Meg Viewer 2d/3d Dicom and other medical formats web viewer/editor",
-  "description": "Meg Viewer是独特的3d医疗影像分割软件。您可以在2d和3d模式下检查数据。" ,  
+  "description": "Meg Viewer是独特的3d医疗影像分割软件。您可以在2d和3d模式下检查数据。",
   "version": "1.0.1",
-  "author": "深藏blue",
+  "author": "汪汪队",
   "year": "2023-",
   "license": "Apache-2.0",
   "licenses": [
@@ -18,7 +18,9 @@
   "homepage": " ",
   "private": false,
   "dependencies": {
+    "@ant-design/icons": "^5.0.1",
     "@tensorflow/tfjs": "^1.7.4",
+    "antd": "^5.5.0",
     "bootstrap": "^4.5.0",
     "daikon": "^1.2.42",
     "eslint": "^7.27.0",
@@ -31,9 +33,11 @@
     "react-dom": "^16.13.1",
     "react-nouislider": "^2.0.1",
     "react-redux": "^6.0.0",
+    "react-router-dom": "^6.11.1",
     "react-scripts": "4.0.3",
     "redux": "^4.0.5",
     "three": "^0.101.1",
+    "typescript": "^5.0.4",
     "zlib": "^1.0.5"
   },
   "scripts": {
