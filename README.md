@@ -6,6 +6,6 @@ WebGL-enabled desktop browsers (Chrome, Firefox, Opera) and allows limited usage
 with mobile browsers (Android Chrome). Version for Safari (macOS, iOS) is planned for future.
 
 ```
-npm install
-npm run start
+yarn
+yarn start
 ```
