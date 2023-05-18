@@ -21,6 +21,7 @@
     "@ant-design/icons": "^5.0.1",
     "@tensorflow/tfjs": "^1.7.4",
     "antd": "^5.5.0",
+    "axios": "^1.4.0",
     "bootstrap": "^4.5.0",
     "daikon": "^1.2.42",
     "eslint": "^7.27.0",

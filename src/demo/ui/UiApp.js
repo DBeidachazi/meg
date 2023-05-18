@@ -188,8 +188,10 @@ class UiApp extends React.Component {
               {(isLoaded && this.isWebGl20supported) ? <UiViewMode /> : <p></p>}
             </Nav>
           </Navbar.Collapse>
+          <div>{ store.testStore }</div>
 
         </Navbar>
+
         {objProgressBar}  {/* 没屌用 */}
         {(isLoaded) ? <UiMain /> : <p></p>} {/*中间的加载的部分*/}
         {(arrErrorsLoadedd.length > 0) ? <UiErrConsole /> : <p></p>}

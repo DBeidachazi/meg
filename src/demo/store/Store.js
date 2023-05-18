@@ -43,6 +43,8 @@ export const initialState = {
   arrErrors: [],
   dicomSeries: [],
   loaderDicom: null,
+
+  testStore: 123,
 };
 //
 // App reducer
@@ -115,6 +117,10 @@ const medReducer = (state = initialState, action) => {
     return Object.assign({}, state, { dicomSeries: action.dicomSeries });
   case StoreActionType.SET_LOADER_DICOM:
     return Object.assign({}, state, { loaderDicom: action.loaderDicom });
+
+  case StoreActionType.SET_TEST_STORE:
+    return Object.assign({}, state, { testStore: action.testStore })
+
   default:
     return state;
   }
