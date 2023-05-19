@@ -9,3 +9,4 @@ with mobile browsers (Android Chrome). Version for Safari (macOS, iOS) is planne
 yarn
 yarn start
 ```
+need nodejs v16

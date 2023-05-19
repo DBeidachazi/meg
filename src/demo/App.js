@@ -34,18 +34,18 @@ import UiApp from './ui/UiApp';
 
 import './App.css';
 
-import Test from "./Test";
-import Test2 from "./Test2";
+import Sidebar from "./sidebar/Sidebar";
+import TestStoreButton from "./sidebar/TestStoreButton";
 
 class App extends React.Component {
   render() {
     return (
         <BrowserRouter>
           <div style={{ display: "flex" , minHeight: "100vh" }}>
-            <Test/>
+            <Sidebar/>
             <Routes>
-              <Route path={"/"} element={<UiApp/>}/>
-              <Route path={'/test'} element={<Test2/>} />
+              <Route path={"/main"} element={<UiApp/>}/>
+              <Route path={'/'} element={<TestStoreButton/>} />
             </Routes>
           </div>
         </BrowserRouter>

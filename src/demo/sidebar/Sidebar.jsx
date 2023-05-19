@@ -1,30 +1,6 @@
-// import React from 'react';
-// import { connect } from 'react-redux';
-// function Test() {
-//   return <div style={{
-//     flexBasis: "15%",
-//     background: "white",
-//   }}>
-//     <div style={{
-//       display: "flex",
-//       flexDirection: "column",
-//       minHeight: "100vh", // todo 好像没什么用
-//       height: "100vh"
-//     }}>
-//       <button style={{ marginBottom: "10%" }}>123</button>
-//       <button style={{ marginBottom: "10%" }}>123</button>
-//       <button style={{ marginBottom: "10%" }}>123</button>
-//       <button style={{ marginBottom: "10%" }}>123</button>
-//       <button style={{ marginBottom: "10%" }}>123</button>
-//     </div>
-//   </div>
-// }
-// export default connect(store => store)(Test)
-
 import { AppstoreOutlined, MailOutlined, CalendarOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from "antd";
-// import { Divider, Menu, Switch } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom'
 
@@ -43,9 +19,9 @@ const Jump = ({ to, context }) => {
   )
 }
 
-const items = [
-  getItem(<Jump to={'/'} context={'Navigation'}/>, '1', <MailOutlined />),
-  getItem(<Jump to={'/test'} context={'Navigation Two'}/>, '2', <CalendarOutlined />),
+const items = ( ShowChildren ) => [
+  getItem(<Jump to={'/'} context={'Input File'}/>, '1', <CalendarOutlined />),
+  getItem(<Jump to={'/main'} context={'Show'}/>, '2', <MailOutlined />, ShowChildren ),
   getItem('Navigation Two', 'sub1', <AppstoreOutlined />, [
     getItem('Option 3', '3'),
     getItem('Option 4', '4'),
@@ -64,9 +40,13 @@ const items = [
   //     <LinkOutlined />,),
 ];
 
-const Test = () => {
+const Sidebar = ( store ) => {
   const [mode, ] = useState('inline');
   const [theme, ] = useState('light');
+  const [ShowChildren, SetShowChildren ] = useState([]);
+  useEffect(() => {
+    SetShowChildren(store.testArray)
+  }, [store.testArray])
   // const [mode, setMode] = useState('inline');
   // const [theme, setTheme] = useState('light');
   // const changeMode = (value) => {
@@ -90,10 +70,10 @@ const Test = () => {
             defaultOpenKeys={['sub1']}
             mode={mode}
             theme={theme}
-            items={items}
+            items={items(ShowChildren)}
         />
       </>
   );
 };
 
-export default connect(store => store)(Test);
+export default connect(store => store)(Sidebar);

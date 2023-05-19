@@ -37,5 +37,7 @@ const StoreActionType = {
   SET_LOADER_DICOM: 32,
 
   SET_TEST_STORE: 33,
+
+  SET_TEST_ARRAY: 34,
 };
 export default StoreActionType;
