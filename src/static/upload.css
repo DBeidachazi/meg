@@ -1,0 +1,130 @@
+.container {
+    max-width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.dropzone {
+    background-color: white;
+    border: 0.25rem dashed #93c5fd;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropzone:hover {
+    border-color: #60a5fa;
+}
+
+.dropzone:focus {
+    border-color: #3b82f6;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.text-blue-600 {
+    color: #2563eb;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-gray-400 {
+    color: #9ca3af;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.text-gray-800 {
+    color: #4b5563;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.list-none {
+    list-style-type: none;
+}
+
+.bg-blue-600 {
+    background-color: #2563eb;
+}
+
+.text-white {
+    color: white;
+}
+
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.rounded-lg {
+    border-radius: 0.75rem;
+}
+
+.bg-blue-700:hover {
+    background-color: #1d4ed8;
+}
+
+.bg-blue-800:focus {
+    background-color: #1e40af;
+}
+
+/* 美化已选择的文件和已上传的文件界面 */
+
+aside {
+    background-color: #f9fafb; /* 设置背景颜色为浅灰色 */
+    border-radius: .5rem; /* 设置边框圆角为 .5rem */
+    padding: .5rem; /* 设置内边距为 .5rem */
+    box-shadow: inset .125rem .125rem .25rem rgba(0,0,0,.05); /* 设置内阴影效果 */
+    opacity:.5; /* 设置透明度为50% */
+}
+
+h4 {
+    margin-bottom: .25rem; /* 设置下边距为 .25rem */
+    color:#60a5fa; /* 设置颜色为浅蓝色 */
+}
+
+ul li {
+    display:flex; /* 设置列表项为弹性布局 */
+    align-items:center; /* 设置列表项垂直居中对齐 */
+    margin-bottom:.125rem; /* 设置列表项下边距为 .125rem */
+    background-color:#f9fafb; /* 设置列表项背景颜色为浅灰色 */
+    border-radius:.25rem; /* 设置列表项边框圆角为 .25rem */
+    padding:.125rem; /* 设置列表项内边距为 .125rem */
+    box-shadow:.0625rem .0625rem .125rem rgba(0,0,0,.05); /* 设置列表项阴影效果 */
+}
+
+/*ul li:last-child {*/
+/*    margin-bottom:.none; !* 设置最后一个列表项无下边距 *!*/
+/*}*/
+
+ul li span:first-child {
+    flex-grow:.1; /* 设置第一个span元素占据剩余空间的10% */
+    text-align:center; /* 设置第一个span元素居中对齐 */
+    color:#60a5fa; /* 设置第一个span元素颜色为浅蓝色 */
+}
+
+ul li span:last-child {
+    flex-grow:.9; /* 设置最后一个span元素占据剩余空间的90% */
+}

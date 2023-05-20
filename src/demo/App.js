@@ -32,6 +32,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import UiApp from './ui/UiApp';
 import './App.css';
 import Sidebar from "./sidebar/Sidebar";
+import Upload from "./upload/Upload";
 
 
 class App extends React.Component {
@@ -43,9 +44,8 @@ class App extends React.Component {
           <div style={{ display: "flex" , minHeight: "100vh" }}>
             <Sidebar/>
             <Routes>
-              <Route path={"/main"} element={<UiApp/>}>
-              </Route>
-              <Route path={'/'} element={<UiApp/>} />
+              <Route path={'/'} element={<Upload/>} />
+              <Route path={"/main"} element={<UiApp/>}/>
             </Routes>
           </div>
         </BrowserRouter>

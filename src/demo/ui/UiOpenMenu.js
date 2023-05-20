@@ -566,6 +566,16 @@ class UiOpenMenu extends React.Component {
   // todo handleFileSelected(evt) 处理上传的文件
   // Perform open file after it selected in dialog
   handleFileSelected(evt) {
+    console.log(evt.target.files)
+    let testBlob = new Blob();
+    console.log(testBlob)
+    let files = new File([testBlob], "test.dcm", { type: "text/plain;charset=utf-8" });
+    console.log(files)
+    let dt = new DataTransfer
+    dt.items.add(files)
+    console.log(dt.files)
+
+
     if (evt.target.files !== undefined) {
       let numFiles = evt.target.files.length;
       console.log(`UiOpenMenu. Trying to open ${numFiles} files`);
