@@ -1,6 +1,6 @@
 import { AppstoreOutlined, MailOutlined, CalendarOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from "antd";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom'
 
@@ -19,9 +19,9 @@ const Jump = ({ to, context }) => {
   )
 }
 
-const items = ( ShowChildren ) => [
+const items = () => [
   getItem(<Jump to={'/'} context={'Input File'}/>, '1', <CalendarOutlined />),
-  getItem(<Jump to={'/main'} context={'Show'}/>, '2', <MailOutlined />, ShowChildren ),
+  getItem(<Jump to={'/main'} context={'Show'}/>, '2', <MailOutlined />),
   getItem('Navigation Two', 'sub1', <AppstoreOutlined />, [
     getItem('Option 3', '3'),
     getItem('Option 4', '4'),
@@ -40,13 +40,14 @@ const items = ( ShowChildren ) => [
   //     <LinkOutlined />,),
 ];
 
-const Sidebar = ( store ) => {
+const Sidebar = () => {
   const [mode, ] = useState('inline');
   const [theme, ] = useState('light');
-  const [ShowChildren, SetShowChildren ] = useState([]);
-  useEffect(() => {
-    SetShowChildren(store.testArray)
-  }, [store.testArray])
+  // const [ShowChildren, SetShowChildren ] = useState([]);
+  // useEffect(() => {
+  //   SetShowChildren(store.testArray)
+  // }, [store.testArray])
+
   // const [mode, setMode] = useState('inline');
   // const [theme, setTheme] = useState('light');
   // const changeMode = (value) => {
@@ -70,10 +71,12 @@ const Sidebar = ( store ) => {
             defaultOpenKeys={['sub1']}
             mode={mode}
             theme={theme}
-            items={items(ShowChildren)}
+            // items={items(ShowChildren)}
+            items={items()}
         />
       </>
   );
 };
 
-export default connect(store => store)(Sidebar);
+// export default connect(store => store)(Sidebar);
+export default connect(store => store)(Sidebar)

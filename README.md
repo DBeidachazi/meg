@@ -1,12 +1,13 @@
 
-## Installation
+##  Medical image 2D/3D web viewer
 
-It works as a standalone HTML5 web application. The latest version can be used with
-WebGL-enabled desktop browsers (Chrome, Firefox, Opera) and allows limited usage
-with mobile browsers (Android Chrome). Version for Safari (macOS, iOS) is planned for future.
+MRI Viewer is a high performance web tool for advanced visualization (both in 2D and 3D modes) medical volumetric data, provided in popular file formats: DICOM, NIfTI, KTX™, HDR.
 
-```
+``` shell
 yarn
+```
+
+``` shell
 yarn start
 ```
 need nodejs v16

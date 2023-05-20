@@ -21,7 +21,7 @@ import VolumeSet from '../engine/VolumeSet';
 import Volume from '../engine/Volume';
 import Texture3D from '../engine/Texture3D';
 
-import UiModalDemo from './UiModalDemo';
+// import UiModalDemo from './UiModalDemo';
 import UiModalGoogle from './UiModalGoogle';
 import UiModalWindowCenterWidth from './UiModalWinCW';
 // import UiModalDicomSeries from './UiModalDicomSeries';
@@ -563,7 +563,7 @@ class UiOpenMenu extends React.Component {
     } // if result is not success
   }
 
-  //
+  // todo handleFileSelected(evt) 处理上传的文件
   // Perform open file after it selected in dialog
   handleFileSelected(evt) {
     if (evt.target.files !== undefined) {
@@ -712,6 +712,7 @@ class UiOpenMenu extends React.Component {
     } // if event is mnot empty
   }
 
+  // todo buildFileSelector 文件选择器
   buildFileSelector() {
     const fileSelector = document.createElement('input');
     fileSelector.setAttribute('type', 'file');
@@ -1005,7 +1006,7 @@ class UiOpenMenu extends React.Component {
 
   //
   // invoked after render
-  //
+  // todo 触发创建文件选择器
   componentDidMount() {
     this.m_fileSelector = this.buildFileSelector();
     const fileNameOnLoad = this.m_fileNameOnLoad;
@@ -1030,13 +1031,15 @@ class UiOpenMenu extends React.Component {
       return jsxOnLoad;
     }
 
-    const jsGoo = (isGoogle) ? 
+    // eslint-disable-next-line no-unused-vars
+    const jsGoo = (isGoogle) ?
       <NavDropdown.Item onClick={this.onModalGoogleShow} >
         <i className="fas fa-brain"></i>
         Google cloud models
       </NavDropdown.Item> : 
       <p></p>;
 
+    // eslint-disable-next-line no-unused-vars
     const jsDemo = (NEED_DEMO_MENU) ?
       <NavDropdown.Item href="#actionOpenDemo" onClick={this.onModalDemoOpenShow} >
         <i className="fas fa-brain"></i>
@@ -1044,6 +1047,7 @@ class UiOpenMenu extends React.Component {
       </NavDropdown.Item> :
       <p></p>;
 
+    // eslint-disable-next-line no-unused-vars
     const jsVidiver = (isGoogle || NEED_DEMO_MENU) ?
       <NavDropdown.Divider /> :
       <p></p>;
@@ -1062,19 +1066,20 @@ class UiOpenMenu extends React.Component {
         <NavDropdown.Item href="#actionOpenComputer" onClick={evt => this.onButtonLocalFile(evt)}>
           <i className="fas fa-desktop"></i>
           {/* Computer */}
+          {/* todo 打开本地文件 */}
           本地数据
         </NavDropdown.Item>
-        <NavDropdown.Item href="#actionOpenUrl" onClick={this.onModalUrlShow} >
-          <i className="fas fa-globe-americas"></i>
-          {/* Url */}
-          网络数据
-        </NavDropdown.Item>
+        {/*<NavDropdown.Item href="#actionOpenUrl" onClick={this.onModalUrlShow} >*/}
+        {/*  <i className="fas fa-globe-americas"></i>*/}
+        {/*  /!* Url *!/*/}
+        {/*  网络数据*/}
+        {/*</NavDropdown.Item>*/}
 
-        {jsVidiver}
+        {/*{jsVidiver}*/}
 
-        {jsGoo}
+        {/*{jsGoo}*/}
 
-        {jsDemo}
+        {/*{jsDemo}*/}
 
         <Modal show={this.state.showModalUrl} onHide={this.onModalUrlHide} >
           <Modal.Title>
@@ -1109,8 +1114,8 @@ class UiOpenMenu extends React.Component {
           </Modal.Header>
         </Modal>
 
-        <UiModalDemo stateVis={this.state.showModalDemo}
-          onHide={this.onModalDemoOpenHide} onSelectDemo={this.onDemoSelected}  />
+        {/*<UiModalDemo stateVis={this.state.showModalDemo}*/}
+        {/*  onHide={this.onModalDemoOpenHide} onSelectDemo={this.onDemoSelected}  />*/}
         <UiModalGoogle stateVis={this.state.showModalGoogle}
           onHide={this.onModalGoogleHide} onSelectDemo={this.onGoogleSelected}  
           arrMenu={config.arrMenuGoogle}/>

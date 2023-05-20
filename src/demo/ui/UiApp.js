@@ -80,16 +80,19 @@ class UiApp extends React.Component {
     // browser detector
     const browserDetector = new BrowserDetector();
     this.isWebGl20supported = browserDetector.checkWebGlSupported();
+
+    // todo 设置禁止弹窗 注释下面六行
+
     if (!this.isWebGl20supported) {
-      this.setState({ strAlertTitle: 'Browser compatibility problem detected' });
-      this.setState({ strAlertText: 'This browser not supported WebGL 2.0. Application functinality is decreased and app can be unstable' });
-      this.onShowModalAlert();
+      // this.setState({ strAlertTitle: 'Browser compatibility problem detected' });
+      // this.setState({ strAlertText: 'This browser not supported WebGL 2.0. Application functinality is decreased and app can be unstable' });
+      // this.onShowModalAlert();
     } else {
       const isValidBro = browserDetector.checkValidBrowser();
       if (!isValidBro) {
-        this.setState({ strAlertTitle: 'Browser compatibility problem detected' });
-        this.setState({ strAlertText: 'App is specially designed for Chrome/Firefox/Opera/Safari browsers' });
-        this.onShowModalAlert();
+        // this.setState({ strAlertTitle: 'Browser compatibility problem detected' });
+        // this.setState({ strAlertText: 'App is specially designed for Chrome/Firefox/Opera/Safari browsers' });
+        // this.onShowModalAlert();
       }
     }
   }

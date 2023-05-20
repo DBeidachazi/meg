@@ -28,33 +28,27 @@
 // export default connect(store => store)(App);
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import UiApp from './ui/UiApp';
-
 import './App.css';
-
 import Sidebar from "./sidebar/Sidebar";
-import TestStoreButton from "./sidebar/TestStoreButton";
+
 
 class App extends React.Component {
+
   render() {
     return (
         <BrowserRouter>
+          {/* todo main路径下设置可变路由*/}
           <div style={{ display: "flex" , minHeight: "100vh" }}>
             <Sidebar/>
             <Routes>
-              <Route path={"/main"} element={<UiApp/>}/>
-              <Route path={'/'} element={<TestStoreButton/>} />
+              <Route path={"/main"} element={<UiApp/>}>
+              </Route>
+              <Route path={'/'} element={<UiApp/>} />
             </Routes>
           </div>
         </BrowserRouter>
-        // <BrowserRouter>
-        //   <div style={{ display: "flex" , minHeight: "100vh" }}>
-        //     <Test />
-        //     <UiApp />
-        //   </div>
-        // </BrowserRouter>
     )
 
   }
