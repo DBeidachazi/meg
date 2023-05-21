@@ -10,4 +10,4 @@ yarn
 ``` shell
 yarn start
 ```
-need nodejs v16
+require nodejs v16
