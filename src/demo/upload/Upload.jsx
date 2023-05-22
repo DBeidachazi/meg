@@ -3,7 +3,12 @@ import "react-dropzone-uploader/dist/styles.css";
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import "../../static/upload.css"
-const Upload = ()=> {
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import ActionTypes from "../store/ActionTypes";
+const Upload = ( store ) => {
+  const navigate = useNavigate();
+
   const [files, setFiles] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
@@ -39,7 +44,7 @@ const Upload = ()=> {
     files.forEach(file => {
       formData.append('myFile', file);
     });
-    axios.post('http://127.0.0.1:8888/upload', formData, {
+    axios.post('http://127.0.0.1:8001/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -74,10 +79,23 @@ const Upload = ()=> {
         </button>
         <aside className="mt-4">
           <h4 className="text-gray-800 font-bold">已上传的文件</h4>
-          <ul className="list-none">{uploadedFileList}</ul>
+          <ul className="list-none" onClick={() => {
+            axios.post('http://127.0.0.1:8001/testresp', {}, { responseType: 'blob' }).then(async(resp) => {
+              console.log(resp.data.type)
+              // let files = new File([resp.data], "test.nii.gz", { type: "text/plain;charset=utf-8" });
+              // let files = new File([resp.data], "0f593c1e-4bb8-470f-a87b-fee3dbd.nii", { type: "application/gzip" });
+              let files = new File([resp.data], "file.nii", { type: "" });
+              console.log(files)
+              let dt = new DataTransfer()
+              dt.items.add(files)
+              console.log(dt.files)
+              await store.dispatch({ type: ActionTypes.SET_CURRENT_FILE , currentFile: dt.files })
+              await navigate('/main');
+            })
+          }}>{uploadedFileList}</ul>
         </aside>
       </div>
   );
 }
 
-export default Upload;
+export default connect(store => store)(Upload);

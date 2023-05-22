@@ -115,6 +115,8 @@ class UiOpenMenu extends React.Component {
     this.m_volumeRoi = null;
     this.m_updateEnable = true;
     this.roiMode = false;
+
+    this.handleRouteJump()
   }
 
   finalizeSuccessLoadedVolume(volSet, fileNameIn) {
@@ -563,17 +565,33 @@ class UiOpenMenu extends React.Component {
     } // if result is not success
   }
 
+  // todo handleRouteJump 路由跳转过来直接加载
+  handleRouteJump() {
+    setTimeout(() => {
+      const store = this.props
+      if (store.currentFile !== null) {
+        console.log("下面是我的文件的FIlelist")
+        console.log(store.currentFile)
+        let evt = {
+          target: {
+            files: store.currentFile
+          }
+        }
+
+        this.handleFileSelected(evt)
+      }
+
+    }, 1000)
+
+  }
+
   // todo handleFileSelected(evt) 处理上传的文件
   // Perform open file after it selected in dialog
   handleFileSelected(evt) {
+    console.log(4)
+    console.log("他打开的FIlelist")
     console.log(evt.target.files)
-    let testBlob = new Blob();
-    console.log(testBlob)
-    let files = new File([testBlob], "test.dcm", { type: "text/plain;charset=utf-8" });
-    console.log(files)
-    let dt = new DataTransfer
-    dt.items.add(files)
-    console.log(dt.files)
+
 
 
     if (evt.target.files !== undefined) {
@@ -585,27 +603,38 @@ class UiOpenMenu extends React.Component {
       console.log(`UiOpenMenu. handleFileSelected. file[0] = ${evt.target.files[0].name}`);
       this.m_volumeSet = new VolumeSet();
       if (numFiles === 1) {
+        console.log(11)
         const file = evt.target.files[0];
         this.m_fileName = file.name;
 
         //  read gzip
         if (this.m_fileName.endsWith('.gz')) {
+          console.log(22)
           // here will be result raw buffer
           this.m_unzippedBuffer = null;
+          console.log(221)
 
           // remove last 3 chars form file name string
           this.m_fileName = this.m_fileName.slice(0, -3);
+          console.log(222)
 
           const store = this.props;
+          console.log(223)
+
 
           const gunzip = zlib.createGunzip();
+          console.log(224)
           createReadStream(file).pipe(gunzip);
+          console.log(225)
           gunzip.on('data', (data) => {
+            console.log(226)
             // progress
             const uiapp = store.uiApp;
             if (this.m_unzippedBuffer == null) {
+              console.log(33)
               uiapp.doShowProgressBar('Read gzip...');
             } else {
+              console.log(44)
               const readSize = this.m_unzippedBuffer.length;
               const allSize = file.size;
               const KOEF_DEFLATE = 0.28;
@@ -617,10 +646,12 @@ class UiOpenMenu extends React.Component {
             // data is Uint8Array
             const dataSize = data.length;
             if (this.m_unzippedBuffer == null) {
+              console.log(55)
               // create buffer from first ungzipped data chunk
               this.m_unzippedBuffer = new Uint8Array(dataSize);
               this.m_unzippedBuffer.set(data, 0);
             } else {
+              console.log(66)
               // append buffer from 2,3,... ungzipped data chunks
               const dataCollectedSize = this.m_unzippedBuffer.length;
               const arrNew = new Uint8Array(dataCollectedSize + dataSize);
@@ -630,10 +661,12 @@ class UiOpenMenu extends React.Component {
             }
           });
           gunzip.on('close', () => {
+            console.log(77)
             console.log('gzip on close');
           });
 
           gunzip.on('end', () => {
+            console.log(88)
             // close progress
             const uiapp = store.uiApp;
             uiapp.doHideProgressBar();
@@ -641,6 +674,7 @@ class UiOpenMenu extends React.Component {
             // now all chunks are read. Need to check raw ungzipped buffer
             const sizeBuffer = this.m_unzippedBuffer.length;
             if (sizeBuffer < 128) {
+              console.log(99)
               console.log('Too small ungzipped data: ' + sizeBuffer.toString() + ' bytes. canat read volume data');
               return;
             }
@@ -724,6 +758,7 @@ class UiOpenMenu extends React.Component {
 
   // todo buildFileSelector 文件选择器
   buildFileSelector() {
+    console.log(3)
     const fileSelector = document.createElement('input');
     fileSelector.setAttribute('type', 'file');
     fileSelector.setAttribute('accept', '.ktx,.dcm,.nii,.hdr,.h,.img,.gz');
@@ -734,6 +769,7 @@ class UiOpenMenu extends React.Component {
 
   onButtonLocalFile(evt) {
     // console.log('onButtonLocalFile started');
+    console.log(1)
     evt.preventDefault();
     this.m_fileSelector.click();
   }
@@ -1018,6 +1054,7 @@ class UiOpenMenu extends React.Component {
   // invoked after render
   // todo 触发创建文件选择器
   componentDidMount() {
+    console.log(2)
     this.m_fileSelector = this.buildFileSelector();
     const fileNameOnLoad = this.m_fileNameOnLoad;
     // console.log(`UiOpenMenu. componentDidMount. fnonl = ${fileNameOnLoad}`);
@@ -1073,7 +1110,11 @@ class UiOpenMenu extends React.Component {
           打开文件
         </div>
       } >
-        <NavDropdown.Item href="#actionOpenComputer" onClick={evt => this.onButtonLocalFile(evt)}>
+        <NavDropdown.Item href="#actionOpenComputer" onClick={evt => {
+          console.log(0)
+          this.onButtonLocalFile(evt)
+          console.log(6)
+        }}>
           <i className="fas fa-desktop"></i>
           {/* Computer */}
           {/* todo 打开本地文件 */}

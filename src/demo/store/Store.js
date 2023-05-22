@@ -47,6 +47,9 @@ export const initialState = {
   testStore: 123,
 
   testArray: [],
+
+  // 用来存储跳转main页面后打开的文件
+  currentFile: null,
 };
 //
 // App reducer
@@ -125,6 +128,9 @@ const medReducer = (state = initialState, action) => {
 
   case StoreActionType.SET_TEST_ARRAY:
     return Object.assign({}, state, { testArray: action.testArray })
+
+  case StoreActionType.SET_CURRENT_FILE:
+    return Object.assign({}, state, { currentFile: action.currentFile })
 
   default:
     return state;

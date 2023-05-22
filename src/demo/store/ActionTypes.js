@@ -39,5 +39,7 @@ const StoreActionType = {
   SET_TEST_STORE: 33,
 
   SET_TEST_ARRAY: 34,
+
+  SET_CURRENT_FILE: 35,
 };
 export default StoreActionType;

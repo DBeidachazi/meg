@@ -45,6 +45,12 @@ class UiApp extends React.Component {
       strAlertText: '???',
       strProgressMessage: 'Loading...',
     };
+    this.testLogCurrentFile()
+  }
+
+  testLogCurrentFile() {
+    const store = this.props
+    console.log(store.currentFile)
   }
 
   UNSAFE_componentWillMount() {
