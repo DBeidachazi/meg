@@ -10,4 +10,7 @@ yarn
 ``` shell
 yarn start
 ```
+``` shell
+yarn build
+```
 require nodejs v16

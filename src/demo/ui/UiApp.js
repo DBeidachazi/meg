@@ -51,6 +51,7 @@ class UiApp extends React.Component {
   testLogCurrentFile() {
     const store = this.props
     console.log(store.currentFile)
+    console.log(store.loadUrl)
   }
 
   UNSAFE_componentWillMount() {

@@ -117,6 +117,7 @@ class UiOpenMenu extends React.Component {
     this.roiMode = false;
 
     this.handleRouteJump()
+    this.handleRouteJump2()
   }
 
   finalizeSuccessLoadedVolume(volSet, fileNameIn) {
@@ -195,6 +196,7 @@ class UiOpenMenu extends React.Component {
   } // callback progress
 
   callbackReadComplete(errCode) {
+    console.log('errCode: ' , errCode)
     if (errCode === undefined) {
       console.log('callbackReadComplete. should be errCode');
     } else {
@@ -567,22 +569,28 @@ class UiOpenMenu extends React.Component {
 
   // todo handleRouteJump 路由跳转过来直接加载
   handleRouteJump() {
-    setTimeout(() => {
-      const store = this.props
-      if (store.currentFile !== null) {
-        console.log("下面是我的文件的FIlelist")
-        console.log(store.currentFile)
-        let evt = {
-          target: {
-            files: store.currentFile
-          }
-        }
+    // setTimeout(() => {
+    //   const store = this.props
+    //   if (store.currentFile !== null) {
+    //     console.log("下面是我的文件的FIlelist")
+    //     console.log(store.currentFile)
+    //     let evt = {
+    //       target: {
+    //         files: store.currentFile
+    //       }
+    //     }
+    //
+    //     this.handleFileSelected(evt)
+    //   }
+    //
+    // }, 1000)
+  }
 
-        this.handleFileSelected(evt)
-      }
-
-    }, 1000)
-
+  // todo 跳转加载网页url
+  handleRouteJump2() {
+    const store = this.props
+    this.state.strUrl = store.loadUrl
+    this.onClickLoadUrl()
   }
 
   // todo handleFileSelected(evt) 处理上传的文件
@@ -1120,17 +1128,17 @@ class UiOpenMenu extends React.Component {
           {/* todo 打开本地文件 */}
           本地数据
         </NavDropdown.Item>
-        {/*<NavDropdown.Item href="#actionOpenUrl" onClick={this.onModalUrlShow} >*/}
-        {/*  <i className="fas fa-globe-americas"></i>*/}
-        {/*  /!* Url *!/*/}
-        {/*  网络数据*/}
-        {/*</NavDropdown.Item>*/}
+        <NavDropdown.Item href="#actionOpenUrl" onClick={this.onModalUrlShow} >
+          <i className="fas fa-globe-americas"></i>
+          {/* Url */}
+          网络数据
+        </NavDropdown.Item>
 
-        {/*{jsVidiver}*/}
+        {jsVidiver}
 
-        {/*{jsGoo}*/}
+        {jsGoo}
 
-        {/*{jsDemo}*/}
+        {jsDemo}
 
         <Modal show={this.state.showModalUrl} onHide={this.onModalUrlHide} >
           <Modal.Title>

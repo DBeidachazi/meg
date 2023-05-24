@@ -50,6 +50,8 @@ export const initialState = {
 
   // 用来存储跳转main页面后打开的文件
   currentFile: null,
+
+  loadUrl: null,
 };
 //
 // App reducer
@@ -131,6 +133,9 @@ const medReducer = (state = initialState, action) => {
 
   case StoreActionType.SET_CURRENT_FILE:
     return Object.assign({}, state, { currentFile: action.currentFile })
+
+  case StoreActionType.SET_LOAD_URL:
+    return Object.assign({}, state, { loadUrl: action.loadUrl })
 
   default:
     return state;
