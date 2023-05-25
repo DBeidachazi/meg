@@ -9,11 +9,13 @@ import ActionTypes from "../store/ActionTypes";
 
 const getFiles = async() => {
   let res = null;
-  // todo vue和react无法通信 实现方法：Vue点击进入react页面后，向flask发送一个用户名，存储在数据库中，存储到全局变量中，react进入页面直接调用接口获取用户名
-  let ikun = 'ikun'
-  await axios.get(`http://127.0.0.1:8009/getAllFileName?user_name=${ikun}`).then( ({ data }) => {
-    console.log(data)
-    res = data
+  // todo vue和react无法通信 实现方法：Vue点击进入react页面后，向flask发送一个用户名，存储到全局变量中，react进入页面直接调用接口获取用户名
+  await axios.get(`http://127.0.0.1:8009/getnumber`).then( async( { data : { data : { current_number } } }) => {
+    console.log("当前手机号 ", current_number)
+    await axios.get(`http://127.0.0.1:8009/getAllFileName?mobile=${current_number}`).then( ({ data }) => {
+      console.log(data)
+      res = data
+    })
   })
   return res;
 }
