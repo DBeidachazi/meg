@@ -10,26 +10,32 @@ import ActionTypes from "../store/ActionTypes";
 const getFiles = async() => {
   let res = null;
   // todo vue和react无法通信 实现方法：Vue点击进入react页面后，向flask发送一个用户名，存储到全局变量中，react进入页面直接调用接口获取用户名
-  await axios.get(`http://127.0.0.1:8009/getnumber`).then( async( { data : { data : { current_number } } }) => {
-    console.log("当前手机号 ", current_number)
-    await axios.get(`http://127.0.0.1:8009/getAllFileName?mobile=${current_number}`).then( ({ data }) => {
+  await axios.get(`http://127.0.0.1:8009/getpid`).then(async({ data: { data: { current_pid } } }) => {
+    console.log("current_pid_type: ", typeof current_pid);
+    console.log("当前pid ", current_pid)
+    await axios.get(`http://127.0.0.1:8009/get_patient_file_path?code=${current_pid}`).then(({ data }) => {
       console.log(data)
       res = data
+    }).catch(() => {
+      console.log("获取文件失败")
     })
   })
   return res;
 }
 
-const Upload = ( store ) => {
+const Upload = (store) => {
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   useEffect(() => {
-    getFiles().then( data => {
+    getFiles().then(data => {
+      console.log(data)
+      if (data.toString() === "[]") {
+      }
       setUploadedFiles(data)
     })
-  },[])
+  }, [])
 
 
   // eslint-disable-next-line no-unused-vars
@@ -49,21 +55,25 @@ const Upload = ( store ) => {
 
   // eslint-disable-next-line no-unused-vars
   const fileList = files.map(file => (
-      <li key={file.path} className="flex items-center justify-between bg-gray-100 p-2 rounded-lg shadow-sm mb-2">
-        <span className="text-gray-800 font-medium">{file.path}</span>
-        <span className="text-gray-600 text-sm">{file.size} bytes</span>
-      </li>
+    <li key={file.path} className="flex items-center justify-between bg-gray-100 p-2 rounded-lg shadow-sm mb-2">
+      <span className="text-gray-800 font-medium">{file.path}</span>
+      <span className="text-gray-600 text-sm">{file.size} bytes</span>
+    </li>
   ));
 
   const uploadedFileList = uploadedFiles.map(file => (
-      <li key={file.key} className="flex items-center justify-between bg-green-100 p-2 rounded-lg shadow-sm mb-2" onClick={() => {
-        const fileName = file.file_name.replace(/_0000/g, "").replace(/\.gz$/, "");
-        console.log(fileName)
-        store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: 'http://127.0.0.1:8009/' + fileName })
-        navigate('/main');
-      }}>
-          <span className="text-green-800 font-medium">{file.file_name}</span>
-      </li>
+    <li key={file.key} className="flex items-center justify-between bg-green-100 p-2 rounded-lg shadow-sm mb-2" onClick={() => {
+      const fileName = file.file_name.replace(/_0000/g, "").replace(/\.gz$/, "");
+      const arr = fileName.split("-");
+      console.log(arr)
+      const pidPath = arr[0];
+      const pidFilename = arr.slice(1).join('-');
+      console.log(pidPath, pidFilename)
+      store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: 'http://127.0.0.1:8009/' + pidPath + "/" + pidFilename });
+      navigate('/main');
+    }}>
+      <span className="text-green-800 font-medium">{file.file_name}</span>
+    </li>
   ));
 
   // const uploadedFileList = uploadedFiles.map(file => (
@@ -114,29 +124,29 @@ const Upload = ( store ) => {
   };
 
   return (
-      <div className="container">
-        {/*<div {...getRootProps({ className: "dropzone" })}>*/}
-        {/*  <input {...getInputProps()} />*/}
-        {/*  <p className="text-lg text-blue-600 font-semibold">*/}
-        {/*    拖动文件到这里，或者点击选择文件*/}
-        {/*  </p>*/}
-        {/*  <p className="text-sm text-gray-400">支持多种格式和大小</p>*/}
-        {/*</div>*/}
-        {/*<aside className="mt-4">*/}
-        {/*  <h4 className="text-gray-800 font-bold">已选择的文件</h4>*/}
-        {/*  <ul className="list-none">{fileList}</ul>*/}
-        {/*</aside>*/}
-        {/*<button*/}
-        {/*    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:bg-blue-800"*/}
-        {/*    onClick={uploadFiles}*/}
-        {/*>*/}
-        {/*  上传*/}
-        {/*</button>*/}
-        <aside className="mt-4">
-          <h4 className="text-gray-800 font-bold">已上传的文件</h4>
-          <ul className="list-none">{uploadedFileList}</ul>
-        </aside>
-      </div>
+    <div className="container">
+      {/*<div {...getRootProps({ className: "dropzone" })}>*/}
+      {/*  <input {...getInputProps()} />*/}
+      {/*  <p className="text-lg text-blue-600 font-semibold">*/}
+      {/*    拖动文件到这里，或者点击选择文件*/}
+      {/*  </p>*/}
+      {/*  <p className="text-sm text-gray-400">支持多种格式和大小</p>*/}
+      {/*</div>*/}
+      {/*<aside className="mt-4">*/}
+      {/*  <h4 className="text-gray-800 font-bold">已选择的文件</h4>*/}
+      {/*  <ul className="list-none">{fileList}</ul>*/}
+      {/*</aside>*/}
+      {/*<button*/}
+      {/*    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:bg-blue-800"*/}
+      {/*    onClick={uploadFiles}*/}
+      {/*>*/}
+      {/*  上传*/}
+      {/*</button>*/}
+      <aside className="mt-4">
+        <h4 className="text-gray-800 font-bold">已上传的文件</h4>
+        <ul className="list-none">{uploadedFileList}</ul>
+      </aside>
+    </div>
   );
 }
 

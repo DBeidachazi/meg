@@ -46,6 +46,7 @@ class App extends React.Component {
             <Routes>
               <Route path={'/'} element={<Upload/>} />
               <Route path={"/main"} element={<UiApp/>}/>
+              <Route path={"/getpiderror"} />
             </Routes>
           </div>
         </BrowserRouter>
