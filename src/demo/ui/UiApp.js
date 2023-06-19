@@ -202,7 +202,7 @@ class UiApp extends React.Component {
 
         </Navbar>
 
-        {objProgressBar}  {/* 没屌用 */}
+        {objProgressBar}  {/* 没用 */}
         {(isLoaded) ? <UiMain /> : <p></p>} {/*中间的加载的部分*/}
         {(arrErrorsLoadedd.length > 0) ? <UiErrConsole /> : <p></p>}
         <UiModalText stateVis={this.state.showModalText}

@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { MailOutlined, CalendarOutlined } from '@ant-design/icons';
 import { Menu } from "antd";
 import { useState } from 'react';
@@ -21,7 +22,7 @@ const Jump = ({ to, context }) => {
 
 const items = () => [
   getItem(<Jump to={'/'} context={'Input File'}/>, '1', <CalendarOutlined />),
-  getItem(<Jump to={'/main'} context={'Show'}/>, '2', <MailOutlined />),
+  // getItem(<Jump to={'/main'} context={'Show'}/>, '2', <MailOutlined />),
 ];
 
 const Sidebar = () => {
