@@ -62,7 +62,7 @@ class UiMain2d extends React.Component {
 
 
     const jsxMain2d = 
-      <Container fluid="true" style={{ height: '100%', minHeight:'100%' }} >
+      <Container fluid="true" style={{ height: '100%', minHeight:'100%', marginLeft: "15px" }} >
         <Row>
           <Col xs md lg="4" style={{ height: '100%', position: 'relative' }} >
             <UiCtrl2d />

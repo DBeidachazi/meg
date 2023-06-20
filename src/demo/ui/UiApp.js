@@ -7,6 +7,7 @@ import StoreActionType from '../store/ActionTypes';
 import UiMain from './UiMain';
 import UiOpenMenu from './UiOpenMenu';
 import UiViewMode from './UiViewMode';
+// eslint-disable-next-line no-unused-vars
 import UiAbout from './UiAbout';
 import UiSaveMenu from './UiSaveMenu';
 import UiReportMenu from './UiReportMenu';
@@ -17,6 +18,7 @@ import UiErrConsole from './UiErrConsole';
 import ModeView from '../store/ModeView';
 
 import BrowserDetector from '../engine/utils/BrowserDetector';
+import UiBackup from "./UiBackup";
 
 class UiApp extends React.Component {
   constructor(props) {
@@ -50,6 +52,10 @@ class UiApp extends React.Component {
 
   testLogCurrentFile() {
     const store = this.props
+    if (store.loadUrl === null) {
+      // 如果为null回到root
+      window.location.href = "/";
+    }
     console.log(store.currentFile)
     console.log(store.loadUrl)
   }
@@ -179,7 +185,8 @@ class UiApp extends React.Component {
       <Container fluid="true" style={{ height:'100%', minHeight:'100%', flexGrow: 1 }}  >
         <Navbar bg="light" variant="light" expand="lg" >
           <Navbar.Brand>
-            <UiAbout />
+            <UiBackup />
+            {/*<UiAbout />*/}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -198,7 +205,7 @@ class UiApp extends React.Component {
               {(isLoaded && this.isWebGl20supported) ? <UiViewMode /> : <p></p>}
             </Nav>
           </Navbar.Collapse>
-          <div>{ store.testStore }</div>
+          {/*<div>{ store.testStore }</div>*/}
 
         </Navbar>
 

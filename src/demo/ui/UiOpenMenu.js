@@ -12,6 +12,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+// eslint-disable-next-line no-unused-vars
 import { NavDropdown, Button, Modal, InputGroup, FormControl, } from 'react-bootstrap';
 // import { gzip, ungzip } from 'node-gzip';
 import zlib from 'zlib';
@@ -22,7 +23,9 @@ import Volume from '../engine/Volume';
 import Texture3D from '../engine/Texture3D';
 
 // import UiModalDemo from './UiModalDemo';
+// eslint-disable-next-line no-unused-vars
 import UiModalGoogle from './UiModalGoogle';
+// eslint-disable-next-line no-unused-vars
 import UiModalWindowCenterWidth from './UiModalWinCW';
 // import UiModalDicomSeries from './UiModalDicomSeries';
 import StoreActionType from '../store/ActionTypes';
@@ -590,6 +593,10 @@ class UiOpenMenu extends React.Component {
   handleRouteJump2() {
     const store = this.props
     this.state.strUrl = store.loadUrl
+    if (this.state.strUrl === null) {
+      // 为空回到root
+      window.location.href = "/";
+    }
     this.onClickLoadUrl()
   }
 
@@ -1111,79 +1118,80 @@ class UiOpenMenu extends React.Component {
     // const isVisibleDicomSeries = (store.dicomSeries.length !== 0);
 
     const jsxOpenMenu =
-      <NavDropdown id="basic-nav-dropdown" title={
-        <div style={{ display: 'inline-block' }}> 
-          <i className="fas fa-folder-open"></i>
-          {/* Open */}
-          打开文件
-        </div>
-      } >
-        <NavDropdown.Item href="#actionOpenComputer" onClick={evt => {
-          console.log(0)
-          this.onButtonLocalFile(evt)
-          console.log(6)
-        }}>
-          <i className="fas fa-desktop"></i>
-          {/* Computer */}
-          {/* todo 打开本地文件 */}
-          本地数据
-        </NavDropdown.Item>
-        <NavDropdown.Item href="#actionOpenUrl" onClick={this.onModalUrlShow} >
-          <i className="fas fa-globe-americas"></i>
-          {/* Url */}
-          网络数据
-        </NavDropdown.Item>
-
-        {jsVidiver}
-
-        {jsGoo}
-
-        {jsDemo}
-
-        <Modal show={this.state.showModalUrl} onHide={this.onModalUrlHide} >
-          <Modal.Title>
-            {/* Load data from external source */}
-            从网络数据中加载数据
-          </Modal.Title>
-
-          <Modal.Header closeButton>
-            <Modal.Body>
-
-              <InputGroup className="mb-3">
-                <InputGroup.Prepend>
-                  <InputGroup.Text id="inputGroup-sizing-default">
-                    {/* Input URL to open */}
-                    请输入网址
-                  </InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl
-                  placeholder="Enter URL here"
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  onChange={this.onChangeUrlString.bind(this)} />
-                <InputGroup.Append>
-                  <Button variant="outline-secondary" onClick={this.onClickLoadUrl}>
-                    {/* Load */}
-                    加载
-                  </Button>
-                </InputGroup.Append>
-              </InputGroup>
-
-            </Modal.Body>
-          </Modal.Header>
-        </Modal>
-
-        {/*<UiModalDemo stateVis={this.state.showModalDemo}*/}
-        {/*  onHide={this.onModalDemoOpenHide} onSelectDemo={this.onDemoSelected}  />*/}
-        <UiModalGoogle stateVis={this.state.showModalGoogle}
-          onHide={this.onModalGoogleHide} onSelectDemo={this.onGoogleSelected}  
-          arrMenu={config.arrMenuGoogle}/>
-        <UiModalWindowCenterWidth stateVis={this.state.showModalWindowCW} volSet={this.m_volumeSet}
-          onHide={this.onModalWindowCWHide} onRef={ ref => (this.childModalWindowCenterWidth = ref)} />
-
-      </NavDropdown>
-
-    // return (jsxOnLoad.length > 1) ? jsxOnLoad : jsxOpenMenu;
+        <div></div>
+    //   <NavDropdown id="basic-nav-dropdown" title={
+    //     <div style={{ display: 'inline-block' }}>
+    //       <i className="fas fa-folder-open"></i>
+    //       {/* Open */}
+    //       打开文件
+    //     </div>
+    //   } >
+    //     <NavDropdown.Item href="#actionOpenComputer" onClick={evt => {
+    //       console.log(0)
+    //       this.onButtonLocalFile(evt)
+    //       console.log(6)
+    //     }}>
+    //       <i className="fas fa-desktop"></i>
+    //       {/* Computer */}
+    //       {/* todo 打开本地文件 */}
+    //       本地数据
+    //     </NavDropdown.Item>
+    //     <NavDropdown.Item href="#actionOpenUrl" onClick={this.onModalUrlShow} >
+    //       <i className="fas fa-globe-americas"></i>
+    //       {/* Url */}
+    //       网络数据
+    //     </NavDropdown.Item>
+    //
+    //     {jsVidiver}
+    //
+    //     {jsGoo}
+    //
+    //     {jsDemo}
+    //
+    //     <Modal show={this.state.showModalUrl} onHide={this.onModalUrlHide} >
+    //       <Modal.Title>
+    //         {/* Load data from external source */}
+    //         从网络数据中加载数据
+    //       </Modal.Title>
+    //
+    //       <Modal.Header closeButton>
+    //         <Modal.Body>
+    //
+    //           <InputGroup className="mb-3">
+    //             <InputGroup.Prepend>
+    //               <InputGroup.Text id="inputGroup-sizing-default">
+    //                 {/* Input URL to open */}
+    //                 请输入网址
+    //               </InputGroup.Text>
+    //             </InputGroup.Prepend>
+    //             <FormControl
+    //               placeholder="Enter URL here"
+    //               aria-label="Default"
+    //               aria-describedby="inputGroup-sizing-default"
+    //               onChange={this.onChangeUrlString.bind(this)} />
+    //             <InputGroup.Append>
+    //               <Button variant="outline-secondary" onClick={this.onClickLoadUrl}>
+    //                 {/* Load */}
+    //                 加载
+    //               </Button>
+    //             </InputGroup.Append>
+    //           </InputGroup>
+    //
+    //         </Modal.Body>
+    //       </Modal.Header>
+    //     </Modal>
+    //
+    //     {/*<UiModalDemo stateVis={this.state.showModalDemo}*/}
+    //     {/*  onHide={this.onModalDemoOpenHide} onSelectDemo={this.onDemoSelected}  />*/}
+    //     <UiModalGoogle stateVis={this.state.showModalGoogle}
+    //       onHide={this.onModalGoogleHide} onSelectDemo={this.onGoogleSelected}
+    //       arrMenu={config.arrMenuGoogle}/>
+    //     <UiModalWindowCenterWidth stateVis={this.state.showModalWindowCW} volSet={this.m_volumeSet}
+    //       onHide={this.onModalWindowCWHide} onRef={ ref => (this.childModalWindowCenterWidth = ref)} />
+    //
+    //   </NavDropdown>
+    //
+    // // return (jsxOnLoad.length > 1) ? jsxOnLoad : jsxOpenMenu;
     return jsxOpenMenu;
   }
 }

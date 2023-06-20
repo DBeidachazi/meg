@@ -1,0 +1,7 @@
+#hello:hover {
+    background-color: #d4d4d8;
+}
+
+#backupImg {
+    -webkit-user-drag: none;
+}

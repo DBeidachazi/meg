@@ -151,7 +151,7 @@ class UiMain3dLight extends React.Component {
 
 
     const jsxMain3dLight = 
-      <Row>
+      <Row style={{ marginLeft: "0px" }}>
         <Col xs={12} sm md lg={4}  >
           {jsxRet}
           <ListGroup.Item as="ul" variant="flush">

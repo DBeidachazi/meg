@@ -6,6 +6,7 @@ import "../../static/upload.css"
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import ActionTypes from "../store/ActionTypes";
+import "./upload.css"
 
 const getFiles = async() => {
   let res = null;
@@ -55,14 +56,15 @@ const Upload = (store) => {
 
   // eslint-disable-next-line no-unused-vars
   const fileList = files.map(file => (
-    <li key={file.path} className="flex items-center justify-between bg-gray-100 p-2 rounded-lg shadow-sm mb-2">
-      <span className="text-gray-800 font-medium">{file.path}</span>
-      <span className="text-gray-600 text-sm">{file.size} bytes</span>
+    <li key={file.path} className="flex items-center justify-between bg-gray-100 p-2 rounded-lg mb-2">
+      <span className="font-medium">{file.path}</span>
+      <span className="text-sm">{file.size} bytes</span>
     </li>
   ));
 
+
   const uploadedFileList = uploadedFiles.map(file => (
-    <li key={file.key} className="flex items-center justify-between bg-green-100 p-2 rounded-lg shadow-sm mb-2" onClick={() => {
+    <li key={file.key} style={{ cursor: "pointer" }} id={ "hello" } className="flex items-center justify-between bg-green-100 p-2 rounded-lg  mb-2" onClick={() => {
       const fileName = file.file_name.replace(/_0000/g, "").replace(/\.gz$/, "");
       const arr = fileName.split("-");
       console.log(arr)
@@ -72,7 +74,7 @@ const Upload = (store) => {
       store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: 'http://127.0.0.1:8009/' + pidPath + "/" + pidFilename });
       navigate('/main');
     }}>
-      <span className="text-green-800 font-medium">{file.file_name}</span>
+      <span className="text-green-800 font-medium" style={{ userSelect: "none" }}>{file.file_name}</span>
     </li>
   ));
 
@@ -142,10 +144,14 @@ const Upload = (store) => {
       {/*>*/}
       {/*  上传*/}
       {/*</button>*/}
-      <aside className="mt-4">
-        <h4 className="text-gray-800 font-bold">已上传的文件</h4>
-        <ul className="list-none">{uploadedFileList}</ul>
-      </aside>
+      <div className="mt-4" style={{ background: "#f4f4f5", padding: "20px 0 20px 0", borderRadius: "10px" }}>
+        <h4 className="font-bold" style={{ color: "#0a0a0a", padding: "0 40px 0 40px" }}>已上传的文件</h4>
+        {/*<h4 className="font-bold">已上传的文件</h4> */}
+        <ul style={{ padding: "0 40px 0 40px" }}>{ uploadedFileList }</ul>
+        {
+          uploadedFiles.length === 0 ? <p className="text-gray-400 text-center">暂无文件</p> : null
+        }
+      </div>
     </div>
   );
 }
