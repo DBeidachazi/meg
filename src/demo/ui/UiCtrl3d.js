@@ -44,10 +44,10 @@ class UiCtrl3d extends React.Component {
   }
 
   transferFuncCallback(transfFuncObj) {
-    const i = transfFuncObj.m_indexMoved;
-    const x = transfFuncObj.m_handleX[i];
-    const y = transfFuncObj.m_handleY[i];
-    console.log(`moved point[${i}] = ${x}, ${y}  `);
+    // const i = transfFuncObj.m_indexMoved;
+    // const x = transfFuncObj.m_handleX[i];
+    // const y = transfFuncObj.m_handleY[i];
+    // console.log(`moved point[${i}] = ${x}, ${y}  `);
     const vr = this.props.volumeRenderer;
     vr.updateTransferFuncTexture(transfFuncObj.m_handleX, transfFuncObj.m_handleY);
   }
@@ -74,6 +74,7 @@ class UiCtrl3d extends React.Component {
     // console.log(`UiCtr3dLight. render. flags = ${bCheckedSag}+${bCheckedCor}+${bCheckedTra}`);
 
     // btn-default active
+
 
     const jsxRenderControls =
     <ul className="list-group" >
