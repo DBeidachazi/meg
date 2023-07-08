@@ -16,7 +16,7 @@ import { Row, Col, Container } from 'react-bootstrap';
 import UiCtrl2d from './UiCtrl2d';
 import Graphics2d from '../engine/Graphics2d';
 import UiTools2d from './UiTools2d';
-import UiSegm2d from './UiSegm2d';
+// import UiSegm2d from './UiSegm2d';
 import UiVolumeSel from './UiVolumeSel'
 
 // import UiHistCard from './UiHistCard';
@@ -67,7 +67,8 @@ class UiMain2d extends React.Component {
           <Col xs md lg="4" style={{ height: '100%', position: 'relative' }} >
             <UiCtrl2d />
             <UiTools2d />
-            <UiSegm2d />
+            {/*todo 删除2d分割大脑*/}
+            {/*<UiSegm2d />*/}
             {jsxVolSel}
 
             { /*            

@@ -122,6 +122,7 @@ class UiViewMode extends React.Component {
     const strTool3Don = (viewMode === ModeView.VIEW_3D_LIGHT && isTool3D === true) ? 'primary' : 'secondary';
     const strTool3Doff = (viewMode === ModeView.VIEW_3D_LIGHT && isTool3D === false) ? 'primary' : 'secondary';
 
+    // eslint-disable-next-line no-unused-vars
     const jsx3d =
     <OverlayTrigger key="3d" placement="bottom" overlay={
       <Tooltip>
@@ -134,6 +135,7 @@ class UiViewMode extends React.Component {
       </Button>
     </OverlayTrigger>
       
+    // eslint-disable-next-line no-unused-vars
     const jsxViewTool =
     <ButtonGroup className="mr-2" aria-label="Top group">
       <OverlayTrigger key="view" placement="bottom" overlay={
@@ -169,10 +171,12 @@ class UiViewMode extends React.Component {
       const vol = volSet.getVolume(volIndex);
       if (vol !== null) {
         if (vol.m_bytesPerVoxel !== FOUR) {
+          // eslint-disable-next-line no-unused-vars
           needShow3d = true;
         }
       }
     } // if more 0 volumes
+    // eslint-disable-next-line no-unused-vars
     const test = true;
     const jsxOut = 
       <ButtonToolbar ria-label="Toolbar with button groups">
@@ -203,9 +207,11 @@ class UiViewMode extends React.Component {
             </Button>
 
           </OverlayTrigger>  
-          {(needShow3d) ? jsx3d : ''}
+          {''}
+          {/* todo 旧的3d {(needShow3d) ? jsx3d : ''}*/}
         </ButtonGroup>
-        {(viewMode === ModeView.VIEW_3D_LIGHT && test) ? jsxViewTool : ''}
+        {''}
+        {/* todo 3d闪电的工具栏 {(viewMode === ModeView.VIEW_3D_LIGHT && test) ? jsxViewTool : ''}*/}
       </ButtonToolbar>
 
     return jsxOut;

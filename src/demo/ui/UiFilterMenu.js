@@ -424,19 +424,19 @@ class UiFilterMenu extends React.Component {
           <div style={{ display: 'inline-block' }}> 
             <i className="fas fa-broom"></i>
             {/* Filter */}
-            模型加载与处理
+            图像处理
           </div>
         } >
-        <NavDropdown.Item href="#actionLungsSeg" onClick={evt => this.onButtonLungsSeg(evt)}>
-          <i className="fas fa-cloud"></i>
-          {/* Lungs segmentation */}
-          肺部分割
-        </NavDropdown.Item>
-        <NavDropdown.Item href="#actionDataectBrain" onClick={evt => this.onButtonDetectBrain(evt)}>
-          <i className="fas fa-brain"></i>
-          {/* Auto detect brain */}
-          自动检测大脑
-        </NavDropdown.Item>
+        {/*<NavDropdown.Item href="#actionLungsSeg" onClick={evt => this.onButtonLungsSeg(evt)}>*/}
+        {/*  <i className="fas fa-cloud"></i>*/}
+        {/*  /!* Lungs segmentation *!/*/}
+        {/*  肺部分割*/}
+        {/*</NavDropdown.Item>*/}
+        {/*<NavDropdown.Item href="#actionDataectBrain" onClick={evt => this.onButtonDetectBrain(evt)}>*/}
+        {/*  <i className="fas fa-brain"></i>*/}
+        {/*  /!* Auto detect brain *!/*/}
+        {/*  自动检测大脑*/}
+        {/*</NavDropdown.Item>*/}
         <NavDropdown.Item href="#actionSobel" onClick={evt => this.onButtonSobel(evt)}>
           {/* Sobel filter */}
           边缘检测
