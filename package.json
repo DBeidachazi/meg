@@ -1,10 +1,10 @@
 {
-  "name": "megviewer",
-  "fullName": "Meg Viewer 2d/3d Dicom and other medical formats web viewer/editor",
-  "description": "Meg Viewer是独特的3d医疗影像分割软件。您可以在2d和3d模式下检查数据。",
+  "name": "MedSego",
+  "fullName": "",
+  "description": "",
   "version": "1.0.1",
-  "author": "汪汪队",
-  "year": "2023-",
+  "author": "HOPE",
+  "year": "",
   "license": "Apache-2.0",
   "licenses": [
     {

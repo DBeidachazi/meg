@@ -1,5 +1,7 @@
 import React from 'react';
+import { Button } from "antd"
 import "../upload/upload.css"
+import { LogoutOutlined } from "@ant-design/icons";
 
 const UiBackup = () => {
   function goToRoot() {
@@ -7,11 +9,11 @@ const UiBackup = () => {
   }
 
   return (
-      <div onClick={goToRoot} >
-
-          <img id={ "backupImg" } src="http://image.kypeople.cn/bUR49G.png" alt="backup black" style={{ width: "2rem", height: "1.5rem",
-                                                        position: "relative", bottom: "2px", cursor: "pointer" }}/>
-      </div>
+      <Button icon={<LogoutOutlined/>} colorBorder="red" type="text" onClick={goToRoot}
+              style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "3rem"
+              }}>
+        返回首页
+      </Button>
   );
 };
 

@@ -94,7 +94,7 @@ class UiApp extends React.Component {
     const browserDetector = new BrowserDetector();
     this.isWebGl20supported = browserDetector.checkWebGlSupported();
 
-    // todo 设置禁止弹窗 注释下面六行
+    // 设置禁止弹窗 注释下面六行
 
     if (!this.isWebGl20supported) {
       // this.setState({ strAlertTitle: 'Browser compatibility problem detected' });
@@ -141,7 +141,7 @@ class UiApp extends React.Component {
   }
 
   /**
-   * 
+   *
    * @param {number} ratio - in [0..99] range
    */
   doSetProgressBarRatio(ratio) {
@@ -166,12 +166,12 @@ class UiApp extends React.Component {
     const fileName = store.fileName;
     const arrErrorsLoadedd = store.arrErrors;
 
-    const strMessageOnMenu = (isLoaded) ? 'File: ' + fileName : '请点击加载场景';    // Press Open button to load scene
-  
+    const strMessageOnMenu = (isLoaded) ? 'File: ' + fileName : '';    // Press Open button to load scene
+
 
     const strProgressMsg = this.state.strProgressMessage;
 
-    const objPrgBarVis = 
+    const objPrgBarVis =
       <Row>
         <Col xs xl sm md lg="12" style={{ width: '100%' } }>
           {strProgressMsg}
@@ -181,43 +181,72 @@ class UiApp extends React.Component {
       </Row>
     const objProgressBar = (this.state.showProgressBar) ? objPrgBarVis : <p></p>;
 
-    const jsxNavBarReact = 
-      <Container fluid="true" style={{ height:'100%', minHeight:'100%', flexGrow: 1 }}  >
-        <Navbar bg="light" variant="light" expand="lg" >
-          <Navbar.Brand>
+    const jsxNavBarReact =
+      <div style={{ display: "flex", height:'100%', minHeight:'100%', flexGrow: 1 }}>
+        <div style={{ width: "10%", background: "white", display: "flex", alignItems: "center" ,flexFlow: "column"  }}>
+          {/* todo sidebar */}
+          {/* todo backup */}
+          <div style={{ marginTop: "1rem", width: "100%" }}>
             <UiBackup />
-            {/*<UiAbout />*/}
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
+          </div>
 
-              <Navbar.Text className="d-none d-sm-block">
-                {strMessageOnMenu}
-              </Navbar.Text>
+          {/* todo name */}
+          {/* <div className="d-none d-sm-block">
+            {strMessageOnMenu}
+          </div> */}
 
-              {/* todo 打开文件 */}
-              <UiOpenMenu fileNameOnLoad={this.m_fileNameOnLoad} />
+          {/* todo save */}
+          <div>
+            { store.isLoaded ? <UiSaveMenu/> : <p></p> }
+          </div>
+        
 
-              <UiSaveMenu />
-              <UiReportMenu />
-              {(store.modeView === ModeView.VIEW_2D) ? <UiFilterMenu /> : <p></p>}
-              {(isLoaded && this.isWebGl20supported) ? <UiViewMode /> : <p></p>}
-            </Nav>
-          </Navbar.Collapse>
-          {/*<div>{ store.testStore }</div>*/}
+        </div>
+        <div style={{  height:'100%', minHeight:'100%', flexGrow: 1 }}>
+          <Container fluid="true" style={{ height:'100%', minHeight:'100%', flexGrow: 1 }}  >
+            {/*todo 顶栏*/}
+            <Navbar bg="light" variant="light" expand="lg" >
+              <Navbar.Brand>
+                <UiBackup />
+                {/*<UiAbout />*/}
+              </Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
 
-        </Navbar>
+                  <Navbar.Text className="d-none d-sm-block">
+                    {/* todo 文件名 */}
+                    {strMessageOnMenu}
+                  </Navbar.Text>
 
-        {objProgressBar}  {/* 没用 */}
-        {(isLoaded) ? <UiMain /> : <p></p>} {/*中间的加载的部分*/}
-        {(arrErrorsLoadedd.length > 0) ? <UiErrConsole /> : <p></p>}
-        <UiModalText stateVis={this.state.showModalText}
-          onHide={this.onHideModalText} onShow={this.onShowModalText} />
-        <UiModalAlert stateVis={this.state.showModalAlert}
-          onHide={this.onHideModalAlert} onShow={this.onShowModalAlert} 
-          title={this.state.strAlertTitle} text={this.state.strAlertText} />
-      </Container>;
+                  {/*<Sidebar></Sidebar>*/}
+
+
+                  {/* todo 打开文件, 组件内部已删除 */}
+                  <UiOpenMenu fileNameOnLoad={this.m_fileNameOnLoad} />
+                  {/* todo 保存 */}
+                  <UiSaveMenu />
+                  {/* todo 报告结果 */}
+                  <UiReportMenu />
+                  {(store.modeView === ModeView.VIEW_2D) ? <UiFilterMenu /> : <p></p>}
+                  {(isLoaded && this.isWebGl20supported) ? <UiViewMode /> : <p></p>}
+                </Nav>
+              </Navbar.Collapse>
+              {/*<div>{ store.testStore }</div>*/}
+            </Navbar>
+            {/* todo 顶栏结束 */}
+
+            {objProgressBar}  {/* 没用 */}
+            {(isLoaded) ? <UiMain /> : <p></p>} {/*中间的加载的部分*/}
+            {(arrErrorsLoadedd.length > 0) ? <UiErrConsole /> : <p></p>}
+            <UiModalText stateVis={this.state.showModalText}
+                         onHide={this.onHideModalText} onShow={this.onShowModalText} />
+            <UiModalAlert stateVis={this.state.showModalAlert}
+                          onHide={this.onHideModalAlert} onShow={this.onShowModalAlert}
+                          title={this.state.strAlertTitle} text={this.state.strAlertText} />
+          </Container>
+        </div>
+      </div>;
 
     return jsxNavBarReact;
   }

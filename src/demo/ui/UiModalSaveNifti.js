@@ -40,7 +40,8 @@ class UiModalSaveNifti extends React.Component {
     };
   } // end constr
 
-  onButtonSave() {
+  onButtonSave(str) {
+    console.log(str);
     // console.log('on button save');
     this.m_hideFunc();
     this.onSaveNifti();
