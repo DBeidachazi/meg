@@ -132,7 +132,8 @@ class UiSaveMenu extends React.Component {
         //     </div>
         //   } >
         // <Button type="text" icon={<SaveOutlined/>} style={{ height: "3rem" }} onClick={evt => this.onModalSaveNiftiShow(evt)} >
-        <Button type="text" icon={<SaveOutlined/>} style={{ height: "3rem" }} onClick={ () => this.onSaveNifti(store.fileName)} >
+        <Button type="text" icon={<SaveOutlined/>} style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "3rem"
+        }} onClick={ () => this.onSaveNifti(store.fileName)} >
           保存到Nifti
         </Button>
     // </NavDropdown>;

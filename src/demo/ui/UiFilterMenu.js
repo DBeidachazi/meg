@@ -10,6 +10,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+// eslint-disable-next-line no-unused-vars
 import { NavDropdown } from 'react-bootstrap';
 import LungsFillTool from '../engine/actvolume/lungsfill/lft';
 
@@ -20,7 +21,11 @@ import ModeView from '../store/ModeView';
 import Modes3d from '../store/Modes3d';
 
 import SobelEdgeDetector from '../engine/imgproc/Sobel';
+// eslint-disable-next-line no-unused-vars
 import UiModalBilateral from './UiModalBilateral';
+import { Button } from "antd";
+// eslint-disable-next-line no-unused-vars
+import { CameraOutlined, RadarChartOutlined } from "@ant-design/icons";
 
 
 // ********************************************************
@@ -116,7 +121,7 @@ class UiFilterMenu extends React.Component {
     uiApp.doSetProgressBarRatio(ratioUpdate);
 
     const isFinished = this.lungsFiller.run();
- 
+
     if (isFinished) {
       console.log('`onSkullRemoveCallback: iters finished!');
       uiApp.doHideProgressBar();
@@ -303,7 +308,7 @@ class UiFilterMenu extends React.Component {
     uiApp.doSetProgressBarRatio(0.0);
 
     this.m_geoRender = actVolume.skullRemoveStart(xDim, yDim, zDim,
-      volTextureSrc, volTextureDst, CREATE_TYPE, NEED_LOG);
+        volTextureSrc, volTextureDst, CREATE_TYPE, NEED_LOG);
     const SK_REM_DELAY_MSEC = 10;
     this.m_timerId = setTimeout(this.onSkullRemoveCallback, SK_REM_DELAY_MSEC);
 
@@ -364,7 +369,7 @@ class UiFilterMenu extends React.Component {
     uiApp.doSetProgressBarRatio(ratioUpdate);
 
     const isFinished = this.m_actVolume.skullRemoveUpdate(this.m_geoRender);
- 
+
     if (isFinished) {
       console.log('`onSkullRemoveCallback: iters finished!');
 
@@ -416,41 +421,22 @@ class UiFilterMenu extends React.Component {
     const store = this.props;
     const isLoaded = store.isLoaded;
 
+    // eslint-disable-next-line no-unused-vars
     const strDisabled = (isLoaded) ? false : true;
     const jsxFilterMenu =
-      <NavDropdown id="save-nav-dropdown" 
-        disabled={strDisabled}
-        title={
-          <div style={{ display: 'inline-block' }}> 
-            <i className="fas fa-broom"></i>
-            {/* Filter */}
-            图像处理
-          </div>
-        } >
-        {/*<NavDropdown.Item href="#actionLungsSeg" onClick={evt => this.onButtonLungsSeg(evt)}>*/}
-        {/*  <i className="fas fa-cloud"></i>*/}
-        {/*  /!* Lungs segmentation *!/*/}
-        {/*  肺部分割*/}
-        {/*</NavDropdown.Item>*/}
-        {/*<NavDropdown.Item href="#actionDataectBrain" onClick={evt => this.onButtonDetectBrain(evt)}>*/}
-        {/*  <i className="fas fa-brain"></i>*/}
-        {/*  /!* Auto detect brain *!/*/}
-        {/*  自动检测大脑*/}
-        {/*</NavDropdown.Item>*/}
-        <NavDropdown.Item href="#actionSobel" onClick={evt => this.onButtonSobel(evt)}>
-          {/* Sobel filter */}
-          边缘检测
-        </NavDropdown.Item>
-        <NavDropdown.Item href="#actionBilateral" onClick={evt => this.onButtonBilateral(evt)}>
-          {/* Bilateral (denoise or smooth) */}
-         去噪与平滑
-        </NavDropdown.Item>
-        <UiModalBilateral stateVis={this.state.showModalBilateral} onHide={this.hideModalBilateral} />
-      </NavDropdown>;
+
+        <div>
+          <Button onClick={evt => this.onButtonSobel(evt)} type="text" icon={<RadarChartOutlined />}
+                  style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "3rem"
+                  }}>
+            边缘检测
+          </Button>
+        </div>
+
 
     return jsxFilterMenu;
   }
 }
- 
+
 export default connect(store => store)(UiFilterMenu);
 

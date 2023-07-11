@@ -42,7 +42,7 @@ class App extends React.Component {
     return (
         <BrowserRouter>
           {/* todo main路径下设置可变路由*/}
-          <div style={{ display: "flex" , minHeight: "100vh" }}>
+          <div style={{ display: "flex" , minHeight: "100vh", height: "100%" }}>
             {/*<Sidebar/>*/}
             <Routes>
               <Route path={'/'} element={<Upload/>} />

@@ -138,9 +138,9 @@ class UiCtrl2d extends React.Component {
 
     const strSlider1 = 'slider1';
 
-    const varSag = (mode2d === Modes2d.SAGGITAL) ? 'primary' : 'secondary';
-    const varCor = (mode2d === Modes2d.CORONAL) ? 'primary' : 'secondary';
-    const varTra = (mode2d === Modes2d.TRANSVERSE) ? 'primary' : 'secondary';
+    const varSag = (mode2d === Modes2d.SAGGITAL) ? 'success' : 'secondary';
+    const varCor = (mode2d === Modes2d.CORONAL) ? 'success' : 'secondary';
+    const varTra = (mode2d === Modes2d.TRANSVERSE) ? 'success' : 'secondary';
 
     let xDim = 0, yDim = 0, zDim = 0;
     const volSet = store.volumeSet;

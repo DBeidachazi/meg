@@ -19,6 +19,7 @@ import ModeView from '../store/ModeView';
 
 import BrowserDetector from '../engine/utils/BrowserDetector';
 import UiBackup from "./UiBackup";
+import getToken from '../tools/uploadPicture';
 
 class UiApp extends React.Component {
   constructor(props) {
@@ -166,6 +167,7 @@ class UiApp extends React.Component {
     const fileName = store.fileName;
     const arrErrorsLoadedd = store.arrErrors;
 
+    // eslint-disable-next-line no-unused-vars
     const strMessageOnMenu = (isLoaded) ? 'File: ' + fileName : '';    // Press Open button to load scene
 
 
@@ -182,42 +184,58 @@ class UiApp extends React.Component {
     const objProgressBar = (this.state.showProgressBar) ? objPrgBarVis : <p></p>;
 
     const jsxNavBarReact =
-      <div style={{ display: "flex", height:'100%', minHeight:'100%', flexGrow: 1 }}>
-        <div style={{ width: "10%", background: "white", display: "flex", alignItems: "center" ,flexFlow: "column"  }}>
+      <div style={{ display: "flex", height:'100vh', minHeight:'100%', flexGrow: 1 }}>
+        <div style={{ width: "12%", background: "#fff", display: "flex", alignItems: "center" ,flexFlow: "column", height: "100%" }}>
           {/* todo sidebar */}
           {/* todo backup */}
           <div style={{ marginTop: "1rem", width: "100%" }}>
             <UiBackup />
           </div>
 
-          {/* todo name */}
-          {/* <div className="d-none d-sm-block">
-            {strMessageOnMenu}
-          </div> */}
-
           {/* todo save */}
-          <div>
+          <div style={{ marginTop: "1rem", width: "100%" }}>
             { store.isLoaded ? <UiSaveMenu/> : <p></p> }
           </div>
-        
 
+          {/* todo snapshot */}
+          <div style={{ marginTop: "1rem", width: "100%" }}>
+            <UiReportMenu />
+          </div>
+
+          <div style={{ marginTop: "1rem", width: "100%" }}>
+            {(store.modeView === ModeView.VIEW_2D) ? <UiFilterMenu /> : <p></p>}
+          </div>
+
+          <div style={{ marginTop: "1rem", width: "100%", display: "flex",justifyContent: "center" }}>
+            {(isLoaded && this.isWebGl20supported) ? <UiViewMode /> : <p></p>}
+          </div>
+
+          {/* todo test */}
+          <div>
+            <button onClick={() => {
+              console.log(23)
+              console.log(getToken())
+            }}>test</button>
+          </div>
+
+          {/*  todo sidebar over */}
         </div>
         <div style={{  height:'100%', minHeight:'100%', flexGrow: 1 }}>
           <Container fluid="true" style={{ height:'100%', minHeight:'100%', flexGrow: 1 }}  >
             {/*todo 顶栏*/}
-            <Navbar bg="light" variant="light" expand="lg" >
-              <Navbar.Brand>
-                <UiBackup />
-                {/*<UiAbout />*/}
-              </Navbar.Brand>
+            <Navbar bg="light" variant="light" expand="lg" hidden={true}>
+              {/*<Navbar.Brand>*/}
+              {/*  <UiBackup />*/}
+              {/*  /!*<UiAbout />*!/*/}
+              {/*</Navbar.Brand>*/}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
 
-                  <Navbar.Text className="d-none d-sm-block">
-                    {/* todo 文件名 */}
-                    {strMessageOnMenu}
-                  </Navbar.Text>
+                  {/*<Navbar.Text className="d-none d-sm-block">*/}
+                  {/*  /!* todo 文件名 *!/*/}
+                  {/*  {strMessageOnMenu}*/}
+                  {/*</Navbar.Text>*/}
 
                   {/*<Sidebar></Sidebar>*/}
 
@@ -225,11 +243,9 @@ class UiApp extends React.Component {
                   {/* todo 打开文件, 组件内部已删除 */}
                   <UiOpenMenu fileNameOnLoad={this.m_fileNameOnLoad} />
                   {/* todo 保存 */}
-                  <UiSaveMenu />
+                  {/*<UiSaveMenu />*/}
                   {/* todo 报告结果 */}
-                  <UiReportMenu />
-                  {(store.modeView === ModeView.VIEW_2D) ? <UiFilterMenu /> : <p></p>}
-                  {(isLoaded && this.isWebGl20supported) ? <UiViewMode /> : <p></p>}
+                  {/*<UiReportMenu />*/}
                 </Nav>
               </Navbar.Collapse>
               {/*<div>{ store.testStore }</div>*/}

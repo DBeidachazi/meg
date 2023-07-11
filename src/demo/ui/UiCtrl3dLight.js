@@ -131,10 +131,10 @@ class UiCtrl3dLight extends React.Component {
     const mode3d = store.mode3d;
     // const mode3droi = store.mode3droi;
 
-    const strA = (mode3d === Modes3d.ISO) ? 'primary' : 'secondary';
-    const strB = (mode3d === Modes3d.RAYCAST) ? 'primary' : 'secondary';
-    const strC = (mode3d === Modes3d.RAYFAST) ? 'primary' : 'secondary';
-    const strD = (mode3d === Modes3d.ERASER) ? 'primary' : 'secondary';
+    const strA = (mode3d === Modes3d.ISO) ? 'success' : 'secondary';
+    const strB = (mode3d === Modes3d.RAYCAST) ? 'success' : 'secondary';
+    const strC = (mode3d === Modes3d.RAYFAST) ? 'success' : 'secondary';
+    const strD = (mode3d === Modes3d.ERASER) ? 'success' : 'secondary';
     // const strAroi = (mode3droi === Modes3droi.ISO) ? 'primary' : 'secondary';
     // const strBroi = (mode3droi === Modes3droi.RAYCAST) ? 'primary' : 'secondary';
 

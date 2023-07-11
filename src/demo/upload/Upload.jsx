@@ -63,6 +63,23 @@ const Upload = (store) => {
   ));
 
 
+  // eslint-disable-next-line no-unused-vars
+  const uploadFileListOriginal = uploadedFiles.map(file => (
+      <li key={file.key} style={{ cursor: "pointer" }} id={ "hello" } className="flex items-center justify-between bg-green-100 p-2 rounded-lg  mb-2" onClick={() => {
+        const fileName = file.file_name.replace(/_0000/g, "").replace(/\.gz$/, "");
+        const arr = fileName.split("-");
+        console.log(arr)
+        const pidPath = arr[0];
+        const pidFilename = arr.slice(1).join('-');
+        console.log(pidPath, pidFilename)
+        store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: 'http://127.0.0.1:8009/' + "original/" + pidPath + "/" + pidFilename });
+        navigate('/main');
+      }}>
+        <span className="text-green-800 font-medium" style={{ userSelect: "none" }}>原始图像</span>
+      </li>
+  ))
+
+
   const uploadedFileList = uploadedFiles.map(file => (
     <li key={file.key} style={{ cursor: "pointer" }} id={ "hello" } className="flex items-center justify-between bg-green-100 p-2 rounded-lg  mb-2" onClick={() => {
       const fileName = file.file_name.replace(/_0000/g, "").replace(/\.gz$/, "");
@@ -147,7 +164,10 @@ const Upload = (store) => {
       <div className="mt-4" style={{ background: "#f4f4f5", padding: "20px 0 20px 0", borderRadius: "10px" }}>
         <h4 className="font-bold" style={{ color: "#0a0a0a", padding: "0 40px 0 40px" }}>已分割的图像</h4>
         {/*<h4 className="font-bold">已上传的文件</h4> */}
-        <ul style={{ padding: "0 40px 0 40px" }}>{ uploadedFileList }</ul>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <ul style={{ padding: "0 40px 0 40px", flexGrow: "1" }}>{ uploadedFileList }</ul>
+          <ul style={{ padding: "0 40px 0 0" }}>{ uploadFileListOriginal }</ul>
+        </div>
         {
           uploadedFiles.length === 0 ? <p className="text-gray-400 text-center">暂无文件</p> : null
         }

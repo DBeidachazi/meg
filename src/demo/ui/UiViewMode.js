@@ -115,9 +115,9 @@ class UiViewMode extends React.Component {
     }
 
     // const strMpr = (viewMode === ModeView.VIEW_MPR) ? 'primary' : 'secondary';
-    const str2d = (viewMode === ModeView.VIEW_2D) ? 'primary' : 'secondary';
-    const str3dLight = (viewMode === ModeView.VIEW_3D_LIGHT) ? 'primary' : 'secondary';
-    const str3d = (viewMode === ModeView.VIEW_3D) ? 'primary' : 'secondary';
+    const str2d = (viewMode === ModeView.VIEW_2D) ? 'success' : 'secondary';
+    const str3dLight = (viewMode === ModeView.VIEW_3D_LIGHT) ? 'success' : 'secondary';
+    const str3d = (viewMode === ModeView.VIEW_3D) ? 'success' : 'secondary';
 
     const strTool3Don = (viewMode === ModeView.VIEW_3D_LIGHT && isTool3D === true) ? 'primary' : 'secondary';
     const strTool3Doff = (viewMode === ModeView.VIEW_3D_LIGHT && isTool3D === false) ? 'primary' : 'secondary';
@@ -179,8 +179,8 @@ class UiViewMode extends React.Component {
     // eslint-disable-next-line no-unused-vars
     const test = true;
     const jsxOut = 
-      <ButtonToolbar ria-label="Toolbar with button groups">
-        <ButtonGroup className="mr-2" aria-label="Top group">
+      <ButtonToolbar ria-label="Toolbar with button groups" style={{ }}>
+        <ButtonGroup className="" aria-label="Top group">
  
           <OverlayTrigger key="2d" placement="bottom" overlay={
             <Tooltip>

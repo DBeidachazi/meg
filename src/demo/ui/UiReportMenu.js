@@ -10,11 +10,15 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavDropdown } from 'react-bootstrap';
+import { Button } from "antd"
 
+// eslint-disable-next-line no-unused-vars
+import { NavDropdown } from 'react-bootstrap';
+// eslint-disable-next-line no-unused-vars
 import UiModalDicomTags from './UiModalDicomTags';
 import Screenshot from '../engine/utils/Screenshot';
 import ModeView from '../store/ModeView';
+import { CameraOutlined } from "@ant-design/icons";
 
 // ********************************************************
 // Const
@@ -74,33 +78,34 @@ class UiReportMenu extends React.Component {
     const store = this.props;
     const isLoaded = store.isLoaded;
 
+
+    // eslint-disable-next-line no-unused-vars
     const strDisabled = (isLoaded) ? false : true;
     const jsxReportMenu = 
-      <NavDropdown id="save-nav-dropdown" 
-        disabled={strDisabled}
-        title={
-          <div style={{ display: 'inline-block' }}> 
-            <i className="fas fa-book"></i>
-            {/* Report */}
-            报告结果
-          </div>
-        } >
-        <NavDropdown.Item onClick={this.onModalDicomTagsShow} >
-          <i className="fas fa-clipboard-list"></i>
-          {/* Show tags */}
-          显示标签
-        </NavDropdown.Item>
+      // <NavDropdown id="save-nav-dropdown"
+      //   disabled={strDisabled}
+      //   title={
+      //     <div style={{ display: 'inline-block' }}>
+      //       <i className="fas fa-book"></i>
+      //       {/* Report */}
+      //       报告结果
+      //     </div>
+      //   } >
+      //   <NavDropdown.Item onClick={this.onModalDicomTagsShow} >
+      //     <i className="fas fa-clipboard-list"></i>
+      //     {/* Show tags */}
+      //     显示标签
+      //   </NavDropdown.Item>
 
-        <NavDropdown.Item onClick={this.onModalScreenshot} >
-          <i className="fas fa-camera"></i>
-          {/* Screenshot */}
+        <Button onClick={this.onModalScreenshot} type="text" icon={<CameraOutlined />} style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "3rem"
+        }}>
           保存图片
-        </NavDropdown.Item>
+        </Button>
 
-        <UiModalDicomTags stateVis={this.state.showModalDicomTags}
-          onHide={this.onModalDicomTagsHide} />
-
-      </NavDropdown>;    
+        // <UiModalDicomTags stateVis={this.state.showModalDicomTags}
+        //   onHide={this.onModalDicomTagsHide} />
+      //
+      // </NavDropdown>;
 
     return jsxReportMenu;
   }
