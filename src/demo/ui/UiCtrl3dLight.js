@@ -155,7 +155,8 @@ class UiCtrl3dLight extends React.Component {
                 </Tooltip>
               }>
                 <Button variant={strA} onClick={this.onModeA}  >
-                  Iso模式
+                  {/* Iso模式 */}
+                  等值面模式
                 </Button>
               </OverlayTrigger>
 
@@ -166,7 +167,8 @@ class UiCtrl3dLight extends React.Component {
                 </Tooltip>
               }>
                 <Button variant={strB} onClick={this.onModeB} >
-                  Vol模式
+                  {/* Vol模式 */}
+                  体绘模式
                 </Button>
               </OverlayTrigger>
 
@@ -177,7 +179,8 @@ class UiCtrl3dLight extends React.Component {
                 </Tooltip>
               }>
                 <Button variant={strC} onClick={this.onModeC} >
-                  MaxPrj模式
+                  {/* MaxPrj模式 */}
+                  最大投影模式
                 </Button>
               </OverlayTrigger>
 
@@ -188,7 +191,8 @@ class UiCtrl3dLight extends React.Component {
                 </Tooltip>
               }>
                 <Button variant={strD} onClick={this.onModeD} >
-                  Eraser模式
+                  {/* Eraser模式 */}
+                  可擦除模式
                 </Button>
               </OverlayTrigger>
 

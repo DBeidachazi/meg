@@ -209,7 +209,7 @@ class UiCtrl2d extends React.Component {
           }>
             <Button variant={varSag} onClick={this.onModeSaggital} >
               {/* Saggital */}
-              矢状面
+              X轴切片
             </Button>
           </OverlayTrigger>
 
@@ -221,7 +221,7 @@ class UiCtrl2d extends React.Component {
           }>
             <Button variant={varCor} onClick={this.onModeCoronal} >
             {/* Coronal */}
-            矢状面
+            Y轴切面
             </Button>
           </OverlayTrigger>
 
@@ -233,7 +233,7 @@ class UiCtrl2d extends React.Component {
           }>
             <Button variant={varTra} onClick={this.onModeTransverse} >
               {/* Transverse */}
-              水平面
+              Z轴切片
             </Button>
           </OverlayTrigger>
         </ButtonGroup>
