@@ -72,7 +72,7 @@ const Upload = (store) => {
         const pidPath = arr[0];
         const pidFilename = arr.slice(1).join('-');
         console.log(pidPath, pidFilename)
-        store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: 'http://127.0.0.1:8009/' + "original/" + pidPath + "/" + pidFilename });
+        store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: 'http://127.0.0.1:8009/' + "original_" + pidPath + "/" + pidFilename });
         navigate('/main');
       }}>
         <span className="text-green-800 font-medium" style={{ userSelect: "none" }}>原始图像</span>
