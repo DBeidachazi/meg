@@ -23,6 +23,8 @@ under the License.
 // absolute imports
 import axios from "axios";
 import { notification } from "antd"
+// eslint-disable-next-line no-unused-vars
+import { CheckOutlined, LoadingOutlined } from "@ant-design/icons";
 
 /**
 * Class Screenshot to take screen copy
@@ -40,6 +42,7 @@ const copyToClipboard = (text) => {
   notification.open({
     message: "圖片地址已複製到剪貼簿",
     description: "請直接在診斷書中粘貼",
+    icon: <CheckOutlined />,
   })
 };
 
@@ -154,6 +157,11 @@ class Screenshot {
     console.log(file)
     formData.append('smfile', file)
     console.log(formData)
+    notification.open({
+      message: "正在上傳圖片",
+      description: "請稍等",
+      icon: <LoadingOutlined />,
+    })
     axios.post("http://localhost:8009/sm_upload", formData, { headers: { 'Content-Type': 'multipart/form-data' } })
       .then( ({ data: { data: { url } } })=> {
         // todo 修改url to md
