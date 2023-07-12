@@ -21,10 +21,28 @@ under the License.
 * @module demo/engine/utils/screenshot
 */
 // absolute imports
+import axios from "axios";
+import { notification } from "antd"
+
 /**
 * Class Screenshot to take screen copy
 * @class Screenshot
 */
+
+
+const copyToClipboard = (text) => {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+  notification.open({
+    message: "圖片地址已複製到剪貼簿",
+    description: "請直接在診斷書中粘貼",
+  })
+};
+
 class Screenshot {
   /**
   * Convert string into byte array
@@ -123,20 +141,39 @@ class Screenshot {
   /**
   * Get screenshot
   */
-  static makeScreenshot(engineRender, shotW, shotH) {
+
+
+
+  static async makeScreenshot(engineRender, shotW, shotH) {
     const imageUri = engineRender.screenshot(shotW, shotH);
+    const blob = Screenshot.dataUriToBlob(imageUri);
+    const formData = new FormData();
+    const strFmtDate = Screenshot.getFormattedDateString();
+    const fileName = `screenshot-${strFmtDate}.png`;
+    const file = new File([blob], fileName)
+    console.log(file)
+    formData.append('smfile', file)
+    console.log(formData)
+    axios.post("http://localhost:8009/sm_upload", formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+      .then( ({ data: { data: { url } } })=> {
+        // todo 修改url to md
+        console.log(url)
+        copyToClipboard(url)
+      })
+    // let { data } = await smUpload(formData)
+    // console.log(data)
     // const imageUri = engineRender3d.screenshot();
 
     // show screen shot
     // Screenshot.showScreenshotInNewWindow(imageUri);
     // TODO: create save as dialog instead of automatic save screen shot to file
 
-    if (imageUri !== null) {
-      // save screen shot
-      const strFmtDate = Screenshot.getFormattedDateString();
-      const fileName = `screenshot-${strFmtDate}.png`;
-      Screenshot.saveScreenShotToFile(imageUri, fileName);
-    }
+    // if (imageUri !== null) {
+    //   // save screen shot
+    //   const strFmtDate = Screenshot.getFormattedDateString();
+    //   const fileName = `screenshot-${strFmtDate}.png`;
+    //   Screenshot.saveScreenShotToFile(imageUri, fileName);
+    // }
   }
 }
 

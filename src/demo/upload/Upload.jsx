@@ -162,7 +162,7 @@ const Upload = (store) => {
       {/*  上传*/}
       {/*</button>*/}
       <div className="mt-4" style={{ background: "#f4f4f5", padding: "20px 0 20px 0", borderRadius: "10px" }}>
-        <h4 className="font-bold" style={{ color: "#0a0a0a", padding: "0 40px 0 40px" }}>已分割的图像</h4>
+        <h4 className="font-bold" style={{ color: "#0a0a0a", padding: "0 40px 0 40px" }}>分割后的图像标签</h4>
         {/*<h4 className="font-bold">已上传的文件</h4> */}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <ul style={{ padding: "0 40px 0 40px", flexGrow: "1" }}>{ uploadedFileList }</ul>

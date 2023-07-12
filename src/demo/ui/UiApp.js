@@ -19,7 +19,6 @@ import ModeView from '../store/ModeView';
 
 import BrowserDetector from '../engine/utils/BrowserDetector';
 import UiBackup from "./UiBackup";
-import getToken from '../tools/uploadPicture';
 
 class UiApp extends React.Component {
   constructor(props) {
@@ -202,20 +201,14 @@ class UiApp extends React.Component {
             <UiReportMenu />
           </div>
 
+          {/* todo filter */}
           <div style={{ marginTop: "1rem", width: "100%" }}>
             {(store.modeView === ModeView.VIEW_2D) ? <UiFilterMenu /> : <p></p>}
           </div>
 
+          {/* todo view mode */}
           <div style={{ marginTop: "1rem", width: "100%", display: "flex",justifyContent: "center" }}>
             {(isLoaded && this.isWebGl20supported) ? <UiViewMode /> : <p></p>}
-          </div>
-
-          {/* todo test */}
-          <div>
-            <button onClick={() => {
-              console.log(23)
-              console.log(getToken())
-            }}>test</button>
           </div>
 
           {/*  todo sidebar over */}
