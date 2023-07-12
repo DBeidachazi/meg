@@ -158,7 +158,7 @@ class Screenshot {
       .then( ({ data: { data: { url } } })=> {
         // todo 修改url to md
         console.log(url)
-        copyToClipboard(url)
+        copyToClipboard("![](" + url + ")")
       })
     // let { data } = await smUpload(formData)
     // console.log(data)
