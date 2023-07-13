@@ -184,7 +184,7 @@ class UiApp extends React.Component {
 
     const jsxNavBarReact =
       <div style={{ display: "flex", height:'100vh', minHeight:'100%', flexGrow: 1 }}>
-        <div style={{ width: "12%", background: "#fff", display: "flex", alignItems: "center" ,flexFlow: "column", height: "100%" }}>
+        <div style={{ width: "12%", background: "#c9c7c7", display: "flex", alignItems: "center" ,flexFlow: "column", height: "100%" }}>
           {/* todo sidebar */}
           {/* todo backup */}
           <div style={{ marginTop: "1rem", width: "100%" }}>

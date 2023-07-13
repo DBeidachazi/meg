@@ -26,7 +26,8 @@ class UiTools2d extends React.Component {
     this.onClickButtonTools = this.onClickButtonTools.bind(this);
     this.state = {
       data: [
-        { img: 'images/icon_tools2d_intensity.png', txt: 'intensity', ke: Tools2dType.INTENSITY, msgTp: '获得体素强度' }, //'Get voxel intensity'
+        // images/icon_tools2d_intensity.png
+        { img: ' images/icon_tools2d_intensity.png', txt: 'intensity', ke: Tools2dType.INTENSITY, msgTp: '获得体素强度' }, //'Get voxel intensity'
         { img: 'images/icon_tools2d_distance.png', txt: 'distance', ke: Tools2dType.DISTANCE, msgTp: '测量体素之间的距离' }, //'Measure distance between voxels'
         { img: 'images/icon_tools2d_angle.png', txt: 'angle', ke: Tools2dType.ANGLE, msgTp: '测量线与线的夹角' }, //Measure angle between lines
         { img: 'images/icon_tools2d_area.png', txt: 'area', ke: Tools2dType.AREA, msgTp: '计算任意面积' }, //Calculate arbitrary area'
