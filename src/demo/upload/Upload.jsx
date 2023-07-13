@@ -24,19 +24,32 @@ const getFiles = async() => {
   return res;
 }
 
+
+
 const Upload = (store) => {
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
-  useEffect(() => {
+  const effectFunc = () => {
     getFiles().then(data => {
       console.log(data)
-      if (data.toString() === "[]") {
-      }
+      if (data.toString() === "[]") {}
       setUploadedFiles(data)
     })
+  }
+
+  useEffect(() => {
+    // getFiles().then(data => {
+    //   console.log(data)
+    //   if (data.toString() === "[]") {
+    //   }
+    //   setUploadedFiles(data)
+    // })
+    effectFunc()
   }, [])
+
+
 
 
   // eslint-disable-next-line no-unused-vars
@@ -61,6 +74,30 @@ const Upload = (store) => {
       <span className="text-sm">{file.size} bytes</span>
     </li>
   ));
+
+
+  // eslint-disable-next-line no-unused-vars
+  const deleteFile = uploadedFiles.map(file => (
+      <li key={file.key} style={{ cursor: "pointer" }} id={ "hello" } className="flex items-center justify-between bg-green-100 p-2 rounded-lg  mb-2" onClick={async() => {
+        const fileName = file.file_name.replace(/_0000/g, "").replace(/\.gz$/, "");
+        const arr = fileName.split("-");
+        // eslint-disable-next-line no-unused-vars
+        const pidPath = arr[0];
+        // eslint-disable-next-line no-unused-vars
+        const pidFilename = arr.slice(1).join('-');
+        console.log(fileName)
+        // store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: 'http://127.0.0.1:8009/' + "original_" + pidPath + "/" + pidFilename });
+        // navigate('/main');
+        await axios.post("http://localhost:8009/remove_file_path", {
+          file_path: fileName
+        }).then(({ data }) => {
+          console.log(data)
+        })
+        await effectFunc()
+      }}>
+        <span className="text-green-800 font-medium" style={{ userSelect: "none" }}>刪除图像</span>
+      </li>
+  ))
 
 
   // eslint-disable-next-line no-unused-vars
@@ -165,8 +202,9 @@ const Upload = (store) => {
         <h4 className="font-bold" style={{ color: "#0a0a0a", padding: "0 40px 0 40px" }}>分割后的图像标签</h4>
         {/*<h4 className="font-bold">已上传的文件</h4> */}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <ul style={{ padding: "0 40px 0 40px", flexGrow: "1" }}>{ uploadedFileList }</ul>
-          <ul style={{ padding: "0 40px 0 0" }}>{ uploadFileListOriginal }</ul>
+          <ul style={{ padding: "0 20px 0 40px", flexGrow: "1" }}>{ uploadedFileList }</ul>
+          <ul style={{ padding: "0 20px 0 0" }}>{ uploadFileListOriginal }</ul>
+          <ul style={{ padding: "0 40px 0 0" }}>{ deleteFile }</ul>
         </div>
         {
           uploadedFiles.length === 0 ? <p className="text-gray-400 text-center">暂无文件</p> : null
