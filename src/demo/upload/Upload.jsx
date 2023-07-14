@@ -8,13 +8,15 @@ import { connect } from "react-redux";
 import ActionTypes from "../store/ActionTypes";
 import "./upload.css"
 
+import { backUrl } from "../config/config";
+
 const getFiles = async() => {
   let res = null;
   // todo vue和react无法通信 实现方法：Vue点击进入react页面后，向flask发送一个用户名，存储到全局变量中，react进入页面直接调用接口获取用户名
-  await axios.get(`http://127.0.0.1:8009/getpid`).then(async({ data: { data: { current_pid } } }) => {
+  await axios.get(backUrl + '/getpid').then(async({ data: { data: { current_pid } } }) => {
     console.log("current_pid_type: ", typeof current_pid);
     console.log("当前pid ", current_pid)
-    await axios.get(`http://127.0.0.1:8009/get_patient_file_path?code=${current_pid}`).then(({ data }) => {
+    await axios.get(backUrl + `/get_patient_file_path?code=${current_pid}`).then(({ data }) => {
       console.log(data)
       res = data
     }).catch(() => {
@@ -88,7 +90,7 @@ const Upload = (store) => {
         console.log(fileName)
         // store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: 'http://127.0.0.1:8009/' + "original_" + pidPath + "/" + pidFilename });
         // navigate('/main');
-        await axios.post("http://localhost:8009/remove_file_path", {
+        await axios.post(backUrl + "/remove_file_path", {
           file_path: fileName
         }).then(({ data }) => {
           console.log(data)
@@ -109,7 +111,7 @@ const Upload = (store) => {
         const pidPath = arr[0];
         const pidFilename = arr.slice(1).join('-');
         console.log(pidPath, pidFilename)
-        store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: 'http://127.0.0.1:8009/' + "original_" + pidPath + "/" + pidFilename });
+        store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: backUrl + '/' + "original_" + pidPath + "/" + pidFilename });
         navigate('/main');
       }}>
         <span className="text-green-800 font-medium" style={{ userSelect: "none" }}>原始图像</span>
@@ -125,7 +127,7 @@ const Upload = (store) => {
       const pidPath = arr[0];
       const pidFilename = arr.slice(1).join('-');
       console.log(pidPath, pidFilename)
-      store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: 'http://127.0.0.1:8009/' + pidPath + "/" + pidFilename });
+      store.dispatch({ type: ActionTypes.SET_LOAD_URL, loadUrl: backUrl + '/' + pidPath + "/" + pidFilename });
       navigate('/main');
     }}>
       <span className="text-green-800 font-medium" style={{ userSelect: "none" }}>{file.file_name}</span>
@@ -165,7 +167,7 @@ const Upload = (store) => {
     files.forEach(file => {
       formData.append('myFile', file);
     });
-    axios.post('http://127.0.0.1:8009/upload', formData, {
+    axios.post(backUrl + '/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

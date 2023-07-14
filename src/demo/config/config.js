@@ -1,3 +1,5 @@
+export const backUrl = 'http://10.105.131.130:8009'
+
 export default {
   // special demo dialog file locations
   //
